@@ -2,13 +2,22 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"sort"
 )
 
 func generateTriplets(nums []int) [][]int {
-	for i:=0;i<len(nums);i++ {
-		if nums[i] <= 
+	for i := 0; i < len(nums); i++ {
+		if nums[i] <= -100000 || nums[i] >= 100000 {
+			fmt.Println("out of range")
+			os.Exit(0)
+		}
+	}
 
+	if len(nums) < 3 || len(nums) > 3000 {
+		fmt.Println("lenght of array not good")
+		os.Exit(0)
+	}
 
 	result := [][]int{}
 	n := len(nums)
