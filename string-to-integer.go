@@ -11,12 +11,21 @@ func myAtoi(s string) int {
 		os.Exit(0)
 	}
 	runeArray := []rune(s)
+
+	for i := 0; i < len(runeArray); i++ {
+		if runeArray[i] < 48 || runeArray[i] > 57 {
+			runeArray = append(runeArray[:i], runeArray[i+1:]...)
+
+		}
+
+	}
+
 	fmt.Print(runeArray)
 	return 0
 
 }
 
 func main() {
-	s := " 4231"
+	s := " 0123456789 hello boy"
 	myAtoi(s)
 }
