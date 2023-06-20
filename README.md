@@ -1,4 +1,4 @@
 # leetcode
-all leetcode problems
+all leetcode problems -- mostly algorithms
 
 ### sometimes solved with gpt
