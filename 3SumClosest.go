@@ -3,23 +3,24 @@ package main
 import "fmt"
 
 func threeSumClosest(nums []int, target int) int {
-
+	var sum int
 	results := [][]int{}
+	var temp int = target + 1
 
 	for i := 0; i < len(nums)-2; i++ {
-		var temp int
-		sum := 0
-		temp = sum
+		sum = 0
 		for j := i + 1; j < len(nums)-1; j++ {
 			for k := j + 1; k < len(nums); k++ {
 				triplet := []int{nums[i], nums[j], nums[k]}
 				results = append(results, triplet)
 				sum = triplet[0] + triplet[1] + triplet[2]
-
+				if mag(sum-target) < temp {
+					temp = sum
+				}
 			}
 		}
 	}
-
+	return sum
 }
 
 func mag(a int) int {
@@ -31,9 +32,6 @@ func mag(a int) int {
 
 func main() {
 	nums := []int{-1, 2, 1, -4}
-	triplets := threeSumClosest(nums, 1)
-	_ = triplets
-	//for _, triplet := range triplets {
-	//	fmt.Println(triplet)
-	//}
+	fmt.Println(threeSumClosest(nums, 1))
+
 }
