@@ -37,14 +37,13 @@ func searchInsert(nums []int, target int) int {
 			return i
 		}
 	}
-
-	return -1
+	return len(nums)
 }
 
 func main() {
 	// Example usage
-	array := []int{1, 3, 5, 6, 8}
-	target := 9
+	array := []int{1, 3, 5, 6}
+	target := 7
 
 	fmt.Println(searchInsert(array, target))
 }
