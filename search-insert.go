@@ -30,11 +30,10 @@ func searchInsert(nums []int, target int) int {
 		fmt.Println("target too low or high")
 		os.Exit(0)
 	}
-
-	for i := 1; i < len(nums)-1; i++ {
+	for i := 0; i < len(nums); i++ {
 		if nums[i] == target {
 			return i
-		} else if nums[i-1] < target && nums[i+1] > target {
+		} else if target < nums[i] {
 			return i
 		}
 	}
@@ -44,7 +43,7 @@ func searchInsert(nums []int, target int) int {
 
 func main() {
 	// Example usage
-	array := []int{1, 3, 5, 6}
+	array := []int{1, 3, 5, 6, 8}
 	target := 9
 
 	fmt.Println(searchInsert(array, target))
