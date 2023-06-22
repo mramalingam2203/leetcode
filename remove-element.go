@@ -25,16 +25,15 @@ func removeElement(nums []int, val int) int {
 		}
 	}
 
-	for i := 0; i < len(nums); i++ {
-		if nums[i] == val {
-			nums = append(nums[:i], nums[i+1:]...)
+	result := make([]int, 0)
+
+	for _, num := range nums {
+		if num != val {
+			result = append(result, num)
 		}
 	}
-	if nums[len(nums)-1] == val {
-		nums = myslice[:len(myslice) - 1]
-	}
-
-	return len(nums)
+	fmt.Println(result)
+	return len(result)
 }
 
 func main() {
