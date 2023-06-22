@@ -31,6 +31,7 @@ func searchRange(nums []int, target int) []int {
 	}
 
 	var indices []int
+
 	for i, num := range nums {
 		if num == target {
 			fmt.Println(i)
@@ -38,16 +39,25 @@ func searchRange(nums []int, target int) []int {
 		}
 	}
 	var ret_idx []int
+
+	if len(indices) == 0 {
+		ret_idx = append(ret_idx, -1)
+		ret_idx = append(ret_idx, -1)
+		return ret_idx
+
+	}
+
 	ret_idx = append(ret_idx, indices[0])
 	ret_idx = append(ret_idx, indices[len(indices)-1])
+
 	return ret_idx
 
 }
 
 func main() {
 	// Example usage
-	array := []int{5, 7, 7, 7, 7, 7, 8, 8, 10}
-	target := 7
+	array := []int{5, 7, 7, 8, 8, 10}
+	target := 6
 
 	index := searchRange(array, target)
 	fmt.Print(index)
