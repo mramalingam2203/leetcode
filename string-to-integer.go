@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"regexp"
 )
 
 func myAtoi(s string) int {
@@ -10,17 +11,14 @@ func myAtoi(s string) int {
 		fmt.Println("string length out of range")
 		os.Exit(0)
 	}
-	runeArray := []rune(s)
-    
-	vals := []rune{ 0, 1,2, 3, 4, 5, 6, 7,8, 9,+, -}
 
-	for i := 0; i < len(runeArray); i++ {
-		if runeArray[i] < 48 || runeArray[i] > 57 {
-			runeArray = append(runeArray[:i], runeArray[i+1:]...)
-			//fmt.Println(runeArray[i])
-		}
+	// Regular expression to match alphabets
+	regex := regexp.MustCompile("[a-zA-Z](?s)")
 
-	}
+	// Replace all alphabets with an empty string
+	s1 := regex.ReplaceAllString(s, "")
+
+	runeArray := []rune(s1)
 
 	fmt.Print(runeArray)
 	return 0
@@ -28,6 +26,6 @@ func myAtoi(s string) int {
 }
 
 func main() {
-	s := " 01234 h"
+	s := " 01234 hello boy"
 	myAtoi(s)
 }

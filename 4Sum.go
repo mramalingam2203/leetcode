@@ -3,74 +3,61 @@ package main
 import (
 	"fmt"
 	_ "os"
-	"sort"
 )
 
-/*
-func fourSum(nums []int, target int) [][]int {
-
-}
-*/
-
-func findQuadruplets(nums []int, target int) [][]int {
-	// Sort the array in ascending order
-	sort.Ints(nums)
-
+func fourSum(nums []int, targetSum int) [][]int {
 	quadruplets := [][]int{}
-	length := len(nums)
+	numCount := make(map[int]int)
 
-	// Fix the first element
-	for i := 0; i < length-3; i++ {
+	// Count the occurrences of each number
+	for _, num := range nums {
+		numCount[num]++
+	}
+
+	// Iterate through the numbers and find the quadruplets
+	for i := 0; i < len(nums)-3; i++ {
 		// Skip duplicates
 		if i > 0 && nums[i] == nums[i-1] {
 			continue
 		}
 
-		// Fix the second element
-		for j := i + 1; j < length-2; j++ {
+		for j := i + 1; j < len(nums)-2; j++ {
 			// Skip duplicates
 			if j > i+1 && nums[j] == nums[j-1] {
 				continue
 			}
 
-			// Fix the third and fourth elements using two pointers
-			left := j + 1
-			right := length - 1
+			for k := j + 1; k < len(nums)-1; k++ {
+				// Skip duplicates
+				if k > j+1 && nums[k] == nums[k-1] {
+					continue
+				}
 
-			for left < right {
-				sum := nums[i] + nums[j] + nums[left] + nums[right]
+				remaining := targetSum - (nums[i] + nums[j] + nums[k])
 
-				if sum == 0 {
-					quadruplets = append(quadruplets, []int{nums[i], nums[j], nums[left], nums[right]})
-
-					// Skip duplicates
-					for left < right && nums[left] == nums[left+1] {
-						left++
-					}
-					for left < right && nums[right] == nums[right-1] {
-						right--
+				// Check if the remaining value is present in the count map
+				if count, exists := numCount[remaining]; exists {
+					// Ensure that we have enough occurrences of the remaining value
+					if (remaining == nums[i] || remaining == nums[j] || remaining == nums[k]) && count < 2 {
+						continue
 					}
 
-					left++
-					right--
-				} else if sum < 0 {
-					left++
-				} else {
-					right--
+					quadruplets = append(quadruplets, []int{nums[i], nums[j], nums[k], remaining})
 				}
 			}
 		}
 	}
 
-	return quadruplets
-}
+	
+|
 
 func main() {
-	nums := []int{1, 0, -1, 0, -2, 2} // Example input array
-	target := 3
-	quadruplets := findQuadruplets(nums, target)
+	nums := []int{2, 2, 2, 2, 2}
+	targetSum := 8
 
-	fmt.Println("Quadruplets:")
+	quadruplets := findQuadruplets(nums, targetSum)
+
+	fmt.Println("Quadruplets with a sum of", targetSum, ":")
 	for _, quad := range quadruplets {
 		fmt.Println(quad)
 	}

@@ -5,14 +5,15 @@ import (
 	"os"
 )
 
-func search(nums []int, target int) int {
-	if len(nums) < 1 || len(nums) > 5000 {
+func searchRange(nums []int, target int) []int {
+
+	if len(nums) < 0 || len(nums) > 100000 {
 		fmt.Println("Array length out of range")
 		os.Exit(0)
 	}
 
 	for i := 0; i < len(nums); i++ {
-		if nums[i] < -10000 || nums[i] > 10000 {
+		if nums[i] < -1e9 || nums[i] > 1e9 {
 			fmt.Println("Number off the range")
 			os.Exit(0)
 		}
@@ -24,7 +25,7 @@ func search(nums []int, target int) int {
 		}
 	}
 
-	if target < -10000 || target > 10000 {
+	if target < -1e9 || target > 1e9 {
 		fmt.Println("target too low or high")
 		os.Exit(0)
 	}
@@ -39,13 +40,9 @@ func search(nums []int, target int) int {
 
 func main() {
 	// Example usage
-	array := []int{4, 2, 9, 1, 7, 5}
-	target := 10
+	array := []int{5, 7, 7, 8, 8, 10}
+	target := 6
 
-	index := search(array, target)
-	if index != -1 {
-		fmt.Printf("Target found at index %d\n", index)
-	} else {
-		fmt.Println("Target not found in the array")
-	}
+	index := searchRange(array, target)
+
 }

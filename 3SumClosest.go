@@ -14,12 +14,13 @@ func threeSumClosest(nums []int, target int) int {
 			}
 		}
 	}
-	temp := 0
-
+	var sum, temp int
 	for i := 0; i < len(results); i++ {
-		if results[i][0]+results[i][1]+results[i][2] > temp {
-			temp = results[i][0] + results[i][1] + results[i][2]
+		sum = results[i][0] + results[i][1] + results[i][2]
+		if sum-target > temp-target {
+			temp = sum
 		}
+		fmt.Println(sum, temp)
 	}
 
 	return temp
