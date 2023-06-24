@@ -4,28 +4,44 @@ package main
 
 import (
 	"fmt"
-	_ "os"
+	"os"
+	"strconv"
 )
 
 func main() {
-	n := 3
-	k := 3
+
+	n := 4
+	k := 9
 	fmt.Println(getPermutation(n, k))
 }
 
 func getPermutation(n int, k int) string {
+
+	// Constraints
+	if n < 1 || n > 9 {
+		fmt.Println("number out of range")
+		os.Exit(0)
+	}
+
 	// Find permutations
 	// Example input
 	arr := []int{}
 	for i := 1; i <= n; i++ {
 		arr = append(arr, i)
 	}
-
 	// Find permutations
 	perms := permute(arr)
-	_ = perms
-	fmt.Println(perms)
-	return "HI"
+	fmt.Println(perms[k-1])
+	return convertIntToString(perms[k-1])
+}
+
+func convertIntToString(elems []int) string {
+	b := ""
+	for _, v := range elems {
+		b += strconv.Itoa(v)
+		b += ""
+	}
+	return b
 }
 
 func permute(nums []int) [][]int {
