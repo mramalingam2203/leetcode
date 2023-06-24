@@ -19,13 +19,21 @@ func specialPerm(nums []int) int {
 		}
 	}
 
-	return 0
+	return permute(nums)
 }
 
-func permute(nums []int) [][]int {
+func permute(nums []int) int {
 	var result [][]int
+	count := 0
 	backtrack(nums, 0, &result)
-	return result
+	for i := 0; i < len(result); i++ {
+		for j := 0; j < len(nums)-1; j++ {
+			if result[i][j]%result[i][j+1] == 0 || result[i][j+1]%result[i][j] == 0 {
+				count++
+			}
+		}
+	}
+	return count
 }
 
 func backtrack(nums []int, start int, result *[][]int) {
@@ -49,5 +57,8 @@ func backtrack(nums []int, start int, result *[][]int) {
 }
 
 func main() {
+	a := make([]int, 3) // len(a)=5
+	fmt.Println(len(a))
+	//fmt.Println(specialPerm(a))
 
 }
