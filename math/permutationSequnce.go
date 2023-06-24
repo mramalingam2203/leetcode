@@ -15,6 +15,13 @@ func main() {
 	fmt.Println(getPermutation(n, k))
 }
 
+func factorial(num int) int {
+	if num == 1 || num == 0 {
+		return num
+	}
+	return num * factorial(num-1)
+}
+
 func getPermutation(n int, k int) string {
 
 	// Constraints
@@ -23,6 +30,10 @@ func getPermutation(n int, k int) string {
 		os.Exit(0)
 	}
 
+	if k < 1 || k > factorial(n) {
+		fmt.Println("inputs out of range")
+		os.Exit(0)
+	}
 	// Find permutations
 	// Example input
 	arr := []int{}
