@@ -24,16 +24,12 @@ func specialPerm(nums []int) int {
 
 func permute(nums []int) int {
 	var result [][]int
-	count := 0
 	backtrack(nums, 0, &result)
-	for i := 0; i < len(result); i++ {
-		for j := 0; j < len(nums)-1; j++ {
-			if result[i][j]%result[i][j+1] == 0 || result[i][j+1]%result[i][j] == 0 {
-				fmt.Println(result[i], result[i][j]%result[i][j+1])
-			}
-		}
+	for idx := range result {
+		fmt.Print(result[idx])
 	}
-	return count
+
+	return 0
 }
 
 func backtrack(nums []int, start int, result *[][]int) {
