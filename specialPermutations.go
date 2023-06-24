@@ -24,11 +24,16 @@ func specialPerm(nums []int) int {
 
 func permute(nums []int) int {
 	var result [][]int
+	count := 0
 	backtrack(nums, 0, &result)
 	for idx := range result {
-		fmt.Print(result[idx])
+		for iidx := 0; iidx < len(result[idx])-1; iidx++ {
+			if result[idx][iidx]%result[idx][iidx+1] == 0 {
+				count++
+			}
+		}
 	}
-
+	fmt.Println(count)
 	return 0
 }
 
@@ -58,6 +63,7 @@ func main() {
 	a[1] = 3
 	a[2] = 6
 
-	fmt.Println(specialPerm(a))
+	specialPerm(a)
+	fmt.Println()
 
 }
