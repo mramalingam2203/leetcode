@@ -10,8 +10,8 @@ import (
 
 func main() {
 
-	n := 4
-	k := 9
+	n := 3
+	k := 5
 	fmt.Println(getPermutation(n, k))
 }
 
