@@ -5,9 +5,20 @@ package main
 import (
 	"fmt"
 	"os"
+	"strconv"
 )
 
+func convertIntToString(elems []int) string {
+	b := ""
+	for _, v := range elems {
+		b += strconv.Itoa(v)
+		b += ";"
+	}
+	return b
+}
+
 func plusOne(digits []int) []int {
+	fmt.Println(convertIntToString(digits))
 
 }
 
