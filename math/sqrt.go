@@ -4,19 +4,25 @@ package main
 
 import (
 	"fmt"
-	"os"
+	"math"
+	_ "os"
+	"strconv"
 )
 
-func babylonianGuess(x int) {
-	runesArray := []rune(x)
-	d = math.Ceil(len(runesArray) / 2)
-	guess2 = 2 * math.Pow(10, d-1)
-	guess7 = 7 * math.Pow(10, d-1)
-	if mag(math.Pow(guess2, 2)-x) < mag(math.Pow(guess7, 2)-x) {
-		return guess2
+func babylonianGuess(x int) int {
+	runesArray := []rune(strconv.Itoa(x))
+	d := math.Ceil(float64(len(runesArray) / 2))
+	fmt.Println(d)
+
+	guess2 := 2 * math.Pow(10, d-1)
+	guess7 := 7 * math.Pow(10, d-1)
+
+	if math.Abs(math.Pow(float64(guess2), 2)-float64(x)) < math.Abs(math.Pow(float64(guess7), 2)-float64(x)) {
+		return int(guess2)
 	} else {
-		return guess1
+		return int(guess7)
 	}
+
 }
 
 func mySqrt(x int) int {
@@ -25,5 +31,5 @@ func mySqrt(x int) int {
 
 func main() {
 	num := 20
-	babylonianGuess(num)
+	fmt.Println(babylonianGuess(num))
 }
