@@ -25,14 +25,14 @@ func babylonianGuess(x int) int {
 }
 
 func mySqrt(x int) int {
-	var epsilon float64 = 1e-5
+	var epsilon float64 = 1e-10
 	var result, result_prev int
 	result = babylonianGuess(x)
 
 	for {
 		result_prev = result
 		result = (result_prev + x/result_prev) / 2
-		if math.Abs(float64(result-result_prev)) > epsilon {
+		if math.Abs(float64(result-result_prev)) < epsilon {
 			break
 		}
 	}
@@ -42,6 +42,6 @@ func mySqrt(x int) int {
 }
 
 func main() {
-	num := 9981
+	num := 10020
 	fmt.Println(mySqrt(num))
 }
