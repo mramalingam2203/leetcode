@@ -24,11 +24,12 @@ package main
 
 import (
 	"fmt"
-	"os"
+	_ "os"
 )
 
 func slope(points [][]int) float64 {
-	return (points[1][1] - points[0][1]) / (points[1][0] - points[0][0])
+	fmt.Print(points)
+	return float64(points[1][1]-points[0][1]) / float64(points[1][0]-points[0][0])
 }
 
 func maxPoints(points [][]int) int {
@@ -37,12 +38,14 @@ func maxPoints(points [][]int) int {
 
 func main() {
 	points := make([][]int, 2)
-	for i := 0; i < n; i++ {
-    	points[i] = make([]int, 2)
-	points = {
-		{0, 1, 2, 3},
-		{4, 5, 6, 7},
+	for i := 0; i < 2; i++ {
+		points[i] = make([]int, 2)
 	}
-}
+	points[0][0] = 1
+	points[0][1] = 2
+	points[1][0] = 4
+	points[1][1] = 3
+
+	fmt.Println(slope(points))
 
 }
