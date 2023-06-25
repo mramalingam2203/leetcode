@@ -18,8 +18,27 @@ func convertIntToString(elems []int) string {
 }
 
 func plusOne(digits []int) []int {
-	fmt.Println(convertIntToString(digits))
+	if len(digits) == 0  || len(digits) > 100{
+		fmt.Println("int array lenngth out of range")
+		os.Exit(0)
+	}
+	
+	for i range len(digits) {
+		for j range digits[i] {
+			if digits[i][j] < 1 || digits[i][j] >9{
+				fmt.Println("numbers out of range")
+				os.Exit(0)
+			}
+		}
+	}
 
+	if digit[0] == '0' {
+		fmt.Println("number invalid")
+		os.Exit(0)
+	}
+
+	fmt.Println(convertIntToString(digits))
+	return digits
 }
 
 func main() {
