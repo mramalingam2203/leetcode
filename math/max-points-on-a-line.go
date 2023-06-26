@@ -29,7 +29,8 @@ import (
 
 func slopesCheck(points [][]int) float64 {
 	for i := range points {
-		fmt.Println(points[i])
+		anchor := points[i]
+		fmt.Println(anchor)
 	}
 	return 0.0
 }
