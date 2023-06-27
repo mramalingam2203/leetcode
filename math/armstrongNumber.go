@@ -3,7 +3,7 @@
 package main
 
 import (
-	_ "fmt"
+	"fmt"
 	_ "os"
 )
 
@@ -19,6 +19,17 @@ func power(x int, y uint64) int {
 	return x * power(x, y/2) * power(x, y/2)
 }
 
+/* Function to calculate order of the number */
+func order(x int) int {
+	n := 0
+	for x != 0 {
+		n++
+		x = x / 10
+	}
+	return n
+}
+
 func main() {
-	//    power(2,3)
+	fmt.Println(power(2, 3))
+	fmt.Println(order(10))
 }
