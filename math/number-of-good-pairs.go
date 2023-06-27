@@ -7,71 +7,54 @@ import (
 	"os"
 )
 
+// Function to print combinations of size r
+func printCombinations(arr []int, r int) {
+	n := len(arr)
+	if r > n {
+		fmt.Println("Error: r is greater than the array size.")
+		return
+	}
 
-void CombinationRepetitionUtil(int chosen[], int arr[],
-                    int index, int r, int start, int end)
-{
-    // Since index has become r, current combination is
-    // ready to be printed, print
-    if (index == r)
-    {
-        for (int i = 0; i < r; i++)
-            printf("%d ", arr[chosen[i]]);
-        printf("\n");
-        return;
-    }
- 
-    // One by one choose all elements (without considering
-    // the fact whether element is already chosen or not)
-    // and recur
-    for (int i = start; i <= end; i++)
-    {
-        chosen[index] = i;
-        CombinationRepetitionUtil(chosen, arr, index + 1,
-                                               r, i, end);
-    }
-    return;
+	data := make([]int, r)
+	combinationUtil(arr, n, r, 0, data, 0)
 }
 
+// Utility function to generate combinations recursively
+func combinationUtil(arr []int, n, r, index int, data []int, dataIndex int) {
+	if dataIndex == r {
+		// Print the combination
+		fmt.Println(data)
+		return
+	}
 
+	if index >= n {
+		return
+	}
 
-
+	data[dataIndex] = arr[index]
+	combinationUtil(arr, n, r, index+1, data, dataIndex+1)
+	combinationUtil(arr, n, r, index+1, data, dataIndex)
+}
 
 func numIdenticalPairs(nums []int) int {
 	if len(nums) < 1 || len(nums) > 100 {
 		fmt.Printf("Array length out of range")
 		os.Exit(0)
 	}
-	for i := 0; i < len(nums); i++ 
-	// Utility function to generate combinations recursively
-	func combinationUtil(arr []int, n, r, index int, data []int, dataIndex int) {
-		if dataIndex == r {
-			// Print the combination
-			fmt.Println(data)
-			return
-		}
-	
-		if index >= n {
-			return
-		}
-	
-		data[dataIndex] = arr[index]
-		combinationUtil(arr, n, r, index+1, data, dataIndex+1)
-		combinationUtil(arr, n, r, index+1, data, dataIndex)
-	}
-	{
+	for i := 0; i < len(nums); i++ {
 		if nums[i] < 1 || nums[i] > 100 {
 			fmt.Println("number out of range")
 			os.Exit(0)
 		}
-
-		
 	}
-
 	return 0
 }
 
 func main() {
+	// Example usage
 	array := []int{1, 2, 3, 4}
-	numIdenticalPairs(array)
+	r := 2
+
+	fmt.Printf("Combinations of size %d in the array %v:\n", r, array)
+	printCombinations(array, r)
 }
