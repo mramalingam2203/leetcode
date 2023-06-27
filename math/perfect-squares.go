@@ -5,12 +5,14 @@ package main
 import (
 	"fmt"
 	"math"
+	"os"
 )
 
 func numSquares(n int) int {
 
 	if n < 1 || n > 1e4 {
 		fmt.Println("Number out of range")
+		os.Exit(0)
 	}
 
 	if math.Sqrt(float64(n))-math.Floor(math.Sqrt(float64(n))) == 0 {
