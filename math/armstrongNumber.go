@@ -19,6 +19,24 @@ func power(x int, y uint64) int {
 	return x * power(x, y/2) * power(x, y/2)
 }
 
+// Function to check whether the given number is
+// Armstrong number or not
+func isArmstrong(int x) bool {
+	// Calling order function
+	n := order(x)
+	temp := x
+	sum := 0
+	var r int
+	for temp != 0 {
+		r = temp % 10
+		sum += power(r, uint32(n))
+		temp =/ 10
+	}
+
+	// If satisfies Armstrong condition
+	return (sum == x)
+}
+
 /* Function to calculate order of the number */
 func order(x int) int {
 	n := 0
