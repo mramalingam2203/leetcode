@@ -3,11 +3,17 @@
 package main
 
 import (
+	"fmt"
 	"math"
 )
 
 func numSquares(n int) int {
-	if math.Sqrt(n)-math.Floor(math.Sqrt(n)) == 0 {
+
+	if n < 1 || n > 1e4 {
+		fmt.Println("Number out of range")
+	}
+
+	if math.Sqrt(float64(n))-math.Floor(math.Sqrt(float64(n))) == 0 {
 		return 1
 	}
 	if n <= 3 {
@@ -35,5 +41,5 @@ func min(a, b int) int {
 }
 
 func main() {
-	fmt.Println(numSquares(20))
+	fmt.Println(numSquares(12))
 }
