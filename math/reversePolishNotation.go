@@ -4,7 +4,8 @@ package main
 
 import (
 	"fmt"
-	_ "os"
+	"os"
+	"strconv"
 )
 
 /*
@@ -32,11 +33,32 @@ func findOperator(char rune) bool {
 	}
 }
 
+func findOperand(char rune) bool {
+	if char >= 48 && char <= 57 {
+		return true
+	} else {
+		return false
+	}
+}
+
+func findOperandI(s string) bool {
+	atoi, _ := strconv.Atoi(s)
+	if atoi < -200 && atoi > 200 {
+		fmt.Println("Out of range")
+		os.Exit(0)
+	}
+	return false
+
+}
+
 func main() {
 	//tokens = []string{"10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"}
 
-	runes := []rune("*+-#")
+	runes := []rune("0123456789")
+	fmt.Println(runes)
+
 	for i := 0; i < len(runes); i++ {
-		fmt.Println(findOperator(runes[i]))
+		fmt.Println(findOperand(runes[i]))
 	}
+
 }
