@@ -45,3 +45,5 @@ func min(a, b int) int {
 func main() {
 	fmt.Println(numSquares(12))
 }
+
+// time out on leet code
