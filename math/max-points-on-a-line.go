@@ -27,6 +27,11 @@ import (
 	_ "os"
 )
 
+
+func coords(coordinates [][] int) float64 {
+	return float64(coordinates[1][1] - coordinates[[0][1]/ coordinates[1][0] - coordinates[[0][0])
+
+
 func slopesCheck(points [][]int) float64 {
 	for i := range points {
 		for j := range points[i] {
