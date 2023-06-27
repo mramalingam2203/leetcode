@@ -7,31 +7,31 @@ import (
 )
 
 // function which will add the binary strings
-func binaryAdditionOfStrings(string1, string2 string) string {
+func addBinary(string1, string2 string) string {
 
-	if len(string1) < 1 || len(string2) < 1 || len(string1) > 104 || len(string2) > 104 {
+	if len(string1) < 1 || len(string2) < 1 || len(string1) > 1e4 || len(string2) > 1e4 {
 		fmt.Println("String length out of range")
 		os.Exit(0)
 	}
-
-	for char := 0; char < len(string1); char++ {
-		if string1[char] != 0 || string1[char] != 0 {
-			fmt.Println("String a has strange character")
-			os.Exit(0)
+	/*
+		for char := 0; char < len(string1); char++ {
+			if string1[char] != 0 || string1[char] != 1 {
+				fmt.Println("String a has strange character")
+				os.Exit(0)
+			}
 		}
-	}
 
-	for char := 0; char < len(string2); char++ {
-		if string2[char] != 0 || string2[char] != 0 {
-			fmt.Println("String b has strange character")
-			os.Exit(0)
+		for char := 0; char < len(string2); char++ {
+			if string2[char] != 0 || string2[char] != 1 {
+				fmt.Println("String b has strange character")
+				os.Exit(0)
+			}
 		}
-	}
-
+	*/
 	// checking if the length of the first string is greater then
 	// second then calling the function by swapping the parameters
 	if len(string1) > len(string2) {
-		return binaryAdditionOfStrings(string2, string1)
+		return addBinary(string2, string1)
 	}
 	// finding the difference between the length of the strings
 	difference := len(string2) - len(string1)
@@ -76,7 +76,6 @@ func binaryAdditionOfStrings(string1, string2 string) string {
 	}
 	return answer
 }
-
 func main() {
 
 	// declaring the strings
@@ -86,7 +85,7 @@ func main() {
 	string1 = "10101"
 	string2 = "100111"
 
-	result := binaryAdditionOfStrings(string1, string2)
+	result := addBinary(string1, string2)
 	// Printing the result of the addition of both the binary strings
 	fmt.Println("The Numeric representation of", string1, "is", "21.")
 	fmt.Println("The Numeric representation of", string2, "is", "39.")
