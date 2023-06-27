@@ -7,7 +7,7 @@ import (
 	_ "os"
 )
 
-func power(x int, y uint64) int {
+func power(x int, y uint32) int {
 
 	if y == 0 {
 		return 1
@@ -21,7 +21,7 @@ func power(x int, y uint64) int {
 
 // Function to check whether the given number is
 // Armstrong number or not
-func isArmstrong(int x) bool {
+func isArmstrong(x int) bool {
 	// Calling order function
 	n := order(x)
 	temp := x
@@ -30,7 +30,7 @@ func isArmstrong(int x) bool {
 	for temp != 0 {
 		r = temp % 10
 		sum += power(r, uint32(n))
-		temp =/ 10
+		temp /= 10
 	}
 
 	// If satisfies Armstrong condition
@@ -48,6 +48,7 @@ func order(x int) int {
 }
 
 func main() {
-	fmt.Println(power(2, 3))
-	fmt.Println(order(10))
+	fmt.Println(isArmstrong(153))
+	fmt.Println(isArmstrong(1253))
+
 }
