@@ -45,18 +45,16 @@ func convertToTitle(num int) string {
 
 		if(r == 0){
 		  if(q == 1){
-			res.convertToTitle(1,alpha[(26 + r-1)%26]);
+			res.convertToTitle(1,alpha[(26 + r-1)%26])
 		  }
 		  else{
 			res = num_hash(q-1);
-			res.append(1,alpha[(26 + r-1)%26]);
-		  }
-		}
-		else{
+			res.append(1,alpha[(26 + r-1)%26])
+		  }else{
 		  res = num_hash(q);
-		  res.append(1,alpha[(26 + r-1)%26]);
+		  res.append(1,alpha[(26 + r-1)%26])
 		}
-		return res;
+		return res
 	  }
 	
 }
