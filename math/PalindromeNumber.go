@@ -2,11 +2,12 @@ package main
 
 import (
 	"fmt"
-	"math"
+	//"math"
 	_ "os"
 	"strconv"
 )
 
+/*
 func isPalindrome(x int) bool {
 	digitArray := strconv.Itoa(x)
 	//fmt.Println(digitArray[0] - 48)
@@ -22,16 +23,21 @@ func isPalindrome(x int) bool {
 	return true
 
 }
+*/
 
-/*
-func isPalindrome0(x int) bool {
+func isPalindrome(x int) bool {
 	numstring := strconv.Itoa(x)
 	runeArray := []rune(numstring)
+	tmpArray := []rune(numstring)
+
 	reverseSlice(runeArray)
-	if numstring == runeArray {
-		return true
+
+	for i := range tmpArray {
+		if runeArray[i] != tmpArray[i] {
+			return false
+		}
 	}
-	return false
+	return true
 
 }
 
@@ -42,7 +48,6 @@ func reverseSlice(slice []rune) {
 		slice[i], slice[j] = slice[j], slice[i]
 	}
 }
-*/
 
 // rune values 1 through 9 ---> 49 through 57
 func main() {
