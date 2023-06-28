@@ -4,9 +4,10 @@ package main
 
 import (
 	"fmt"
-	"os"
+	_ "os"
 )
 
+/*
 func isValid(s string) bool {
 	if len(s) < 1 || len(s) > 1e4 {
 		fmt.Println("Invalid length of string")
@@ -33,8 +34,25 @@ func isValid(s string) bool {
 
 	return true
 }
+*/
+
+func isValid(s string) bool {
+	srune := []rune(s)
+	// fmt.Println(srune)
+
+	for i := 0; i < len(srune); i++ {
+		if srune[i] == 41 && srune[i+1] == 43 || srune[i] == 91 && srune[i+1] == 93 || srune[i] == 123 && srune[i+1] == 125 {
+			continue
+		} else {
+			return false
+		}
+	}
+
+	return true
+
+}
 
 func main() {
-	fmt.Println(isValid("(){}[}"))
+	fmt.Println(isValid("(){}[]"))
 
 }
