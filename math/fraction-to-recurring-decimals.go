@@ -18,11 +18,25 @@ func fractionToDecimal(numerator int, denominator int) string {
 	if numerator%denominator == 0 {
 		return strconv.Itoa(numerator / denominator)
 	} else {
-		return fmt.Sprintf("%f", float64(numerator)/float64(denominator))
+		//return fmt.Sprintf("%f", float64(numerator)/float64(denominator))
+		findRecurrence(numerator, denominator)
 
 	}
 
 	return "hi"
+}
+
+func findRecurrence(num int, den int) {
+	var res string
+	quoient := num / den
+	residuesMap := map[int]int{}
+	remainder := num % den
+
+	for{
+
+ 		if remainder !=0 && if residuesMap[remainder]
+	}
+
 }
 
 func main() {
