@@ -29,11 +29,18 @@ func isValid(s string) bool {
 		}
 	*/
 
+	for i := 0; i < len(srune)-1; i += 2 {
+		fmt.Println(srune[i])
+		if srune[i] != srune[i+1] {
+			continue
+		}
+		return true
+	}
+
 	return false
 }
 
 func main() {
-
-	isValid("(){}[]")
+	fmt.Println(isValid("(){}[]"))
 
 }
