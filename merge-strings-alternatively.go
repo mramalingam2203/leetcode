@@ -9,7 +9,7 @@ import (
 
 func main() {
 
-	s1 := "hi"
+	s1 := "world"
 	s2 := "hello"
 
 	fmt.Println(mergeAlternately(s1, s2))
@@ -39,5 +39,15 @@ func mergeAlternately(word1 string, word2 string) string {
 			os.Exit(0)
 		}
 	}
-	return "dummy"
+
+	var result []rune
+
+	for i := 0; i < len(runeT); i++ {
+		if i < len(runeS) {
+			result = append(result, runeS[i])
+		}
+		result = append(result, runeT[i])
+	}
+
+	return string(result)
 }
