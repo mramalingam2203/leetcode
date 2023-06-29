@@ -30,16 +30,11 @@ func permute(nums []int) int {
 	for idx := range result {
 		check = true
 		for iidx := 0; iidx < len(result[idx])-1; iidx++ {
-			_ = check && result[idx][iidx]%result[idx][iidx+1] == 0
+			_ = check && (result[idx][iidx]%result[idx][iidx+1] == 0 || result[idx][iidx+1]%result[idx][iidx] == 0)
 		}
-
-		for iidx := len(result[idx]) - 1; iidx > 0; iidx++ {
-			_ = check && result[idx][iidx]%result[idx][iidx-1] == 0
+		if check == true {
+			count++
 		}
-
-	}
-	if check == true {
-		count++
 	}
 
 	fmt.Println(count)

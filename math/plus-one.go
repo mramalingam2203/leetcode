@@ -18,7 +18,8 @@ func convertIntArrayToInt(elems []int) int {
 	return result
 }
 
-func NumToArray(num int) []int {
+func NumToArray(n uint64) []int {
+	num := int(n)
 	arr := make([]int, len(strconv.Itoa(num)))
 
 	for i := len(arr) - 1; num > 0; i-- {

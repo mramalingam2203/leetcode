@@ -33,15 +33,7 @@ func findOperator(char rune) bool {
 	}
 }
 
-func findOperand(char rune) bool {
-	if char >= 48 && char <= 57 {
-		return true
-	} else {
-		return false
-	}
-}
-
-func findOperandI(s string) bool {
+func findOperand(s string) bool {
 	atoi, _ := strconv.Atoi(s)
 	if atoi < -200 || atoi > 200 {
 		fmt.Println("Out of range")
