@@ -9,9 +9,9 @@ import (
 )
 
 func main() {
-	s1 := "heleoworld"
-	s2 := "helloworldy"
-	findTheDifference(s1, s2)
+	s1 := "ae"
+	s2 := "aea"
+	fmt.Println(findTheDifference(s1, s2))
 
 }
 
@@ -28,6 +28,8 @@ func findTheDifference(s string, t string) byte {
 
 	runeS := []rune(s)
 	runeT := []rune(t)
+	fmt.Println(runeS)
+	fmt.Println(runeT)
 
 	for i := range runeS {
 		if runeS[i] < 97 || runeS[i] > 122 {
@@ -53,6 +55,11 @@ func findTheDifference(s string, t string) byte {
 		return runeT[i] < runeT[j]
 	})
 
-	// fmt.Println(runeT[len(runeT)-1])
+	for i := 0; i < len(runeT)-1; i++ {
+		if runeT[i] != runeS[i] {
+			return byte(runeT[i])
+		}
+	}
+
 	return byte(runeT[len(runeT)-1])
 }
