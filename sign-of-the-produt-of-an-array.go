@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	array := []int{9, 72, 34, 29, -49, -22, -77, -17, -66, -75, -44, -30, -24}
+	array := []int{9, 72, 34, 29, 0, -22, -77, -17, -66, -75, -44, -30, -24}
 	fmt.Println(arraySign(array))
 }
 
@@ -24,42 +24,24 @@ func arraySign(nums []int) int {
 			os.Exit(0)
 		}
 	}
-	var prod int64
-	prod = 1
 
-	for i := range nums {
-		prod *= int64(nums[i])
-	}
-
-	fmt.Println(prod)
-	return signFunc(prod)
+	return signFunc(nums)
 }
-
-func signFunc(n int64) int {
-	if n < 0 {
-		return -1
-	} else if n > 0 {
-		return 1
-	}
-
-	return 0
-}
-
 
 func signFunc(nums []int) int {
-	var negative, zero
+	var negative int
 	for i := range nums {
-		if nums[i] > 0 {
+		if nums[i] < 0 {
 			negative++
-		}else if nums[i] == 0 {
+		} else if nums[i] == 0 {
 			return 0
 		}
 	}
-
-	if negative %2 !=0 {
+	fmt.Println(negative)
+	if negative%2 != 0 {
 		return -1
 	}
 
 	return 1
-				
+
 }
