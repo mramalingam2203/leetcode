@@ -15,6 +15,7 @@ func isAnagram(s string, t string) bool {
 	}
 
 	if len(s) != len(t) {
+		fmt.Println("Strign unequal lenghts")
 		return false
 	}
 	runeS := []rune(s)
@@ -22,12 +23,14 @@ func isAnagram(s string, t string) bool {
 
 	for i := range runeS {
 		if !unicode.IsLetter(runeS[i]) {
+			fmt.Println("String 1 contanis invalid character")
 			return false
 		}
 	}
 
 	for i := range runeT {
 		if !unicode.IsLetter(runeT[i]) {
+			fmt.Println("String 2 contanis invalid character")
 			return false
 		}
 	}
@@ -37,7 +40,7 @@ func isAnagram(s string, t string) bool {
 
 func main() {
 	s1 := "hello world"
-	s2 := "world ellohe"
+	s2 := "world el1lo"
 	fmt.Println(isAnagram(s1, s2))
 
 }
