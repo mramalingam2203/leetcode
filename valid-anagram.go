@@ -5,6 +5,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"sort"
 )
 
 func isAnagram(s string, t string) bool {
@@ -36,15 +37,29 @@ func isAnagram(s string, t string) bool {
 		}
 	}
 
-	
+	// Sort the rune array 1
+	sort.Slice(runeS, func(i, j int) bool {
+		return runeS[i] < runeS[j]
+	})
+
+	// Sort the rune array 2
+	sort.Slice(runeT, func(i, j int) bool {
+		return runeT[i] < runeT[j]
+	})
+
+	for i := 0; i < len(runeS); i++ {
+		if runeS[i] != runeT[i] {
+			return false
+		}
+	}
 
 	return true
 
 }
 
 func main() {
-	s1 := "a1"
-	s2 := "2q"
+	s1 := "heleoworld"
+	s2 := "dlrowolleh"
 	fmt.Println(isAnagram(s1, s2))
 
 }
