@@ -9,8 +9,8 @@ import (
 
 func main() {
 
-	s1 := "abcd"
-	s2 := "pq"
+	s1 := "ab"
+	s2 := "pqrs"
 
 	fmt.Println(mergeAlternately(s1, s2))
 }
@@ -24,6 +24,7 @@ func mergeAlternately(word1 string, word2 string) string {
 	runeS := []rune(word1)
 	runeT := []rune(word2)
 	_ = runeT
+	fmt.Println(runeS)
 
 	for i := range runeS {
 		if runeS[i] < 97 || runeS[i] > 122 {
@@ -41,11 +42,19 @@ func mergeAlternately(word1 string, word2 string) string {
 
 	var result []rune
 
-	for i := 0; i < len(runeS)+len(runeT); i++ {
-		if i < len(runeS) {
-			result = append(result, runeS[i])
-		} else if i < len(runeT) {
+	if len(runeT) > len(runeS) {
+		for i := 0; i < len(runeT); i++ {
+			if i < len(runeS) {
+				result = append(result, runeS[i])
+			}
 			result = append(result, runeT[i])
+		}
+	} else {
+		for i := 0; i < len(runeS); i++ {
+			result = append(result, runeS[i])
+			if i < len(runeT) {
+				result = append(result, runeT[i])
+			}
 		}
 	}
 
