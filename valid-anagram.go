@@ -5,7 +5,6 @@ package main
 import (
 	"fmt"
 	"os"
-	"unicode"
 )
 
 func isAnagram(s string, t string) bool {
@@ -20,27 +19,32 @@ func isAnagram(s string, t string) bool {
 	}
 	runeS := []rune(s)
 	runeT := []rune(t)
+	_ = runeT
+	fmt.Println(runeS)
 
 	for i := range runeS {
-		if !unicode.IsLetter(runeS[i]) {
+		if runeS[i] < 97 || runeS[i] > 122 {
 			fmt.Println("String 1 contanis invalid character")
 			return false
 		}
 	}
 
 	for i := range runeT {
-		if !unicode.IsLetter(runeT[i]) {
+		if runeT[i] < 97 || runeT[i] > 122 {
 			fmt.Println("String 2 contanis invalid character")
 			return false
 		}
 	}
 
+	
+
 	return true
+
 }
 
 func main() {
-	s1 := "hello world"
-	s2 := "world el1lo"
+	s1 := "a1"
+	s2 := "2q"
 	fmt.Println(isAnagram(s1, s2))
 
 }
