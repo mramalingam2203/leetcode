@@ -13,10 +13,13 @@ func main() {
 
 func repeatedSubstringPattern(s string) bool {
 	runeS := []rune(s)
-
-	runes_2D := make([][]rune, 3)
-	runes_2D = convertTo2D(runeS, 3)
-	fmt.Print(runes_2D)
+	for i := 0; i < len(runes); i++ {
+		if i != 0 && i%len(runes) == 0 {
+			runes_2D := make([][]rune, i)
+			runes_2D = convertTo2D(runeS, i)
+			fmt.Print(runes_2D)
+		}
+	}
 
 	return true
 }
