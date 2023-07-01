@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	nums := []int{1, 2, 2, 3}
+	nums := []int{6, 5, 5, 4}
 	fmt.Println(isMonotonic(nums))
 }
 
@@ -27,15 +27,28 @@ func isMonotonic(nums []int) bool {
 		}
 	}
 
-	var result bool
+	var inc, dec bool = true, true
 
-	for i := 0; i < nums.Len(); i++ {
-		if nums[i] < nums[i+1] {
-			result &= true
-		} else {
-			result &= false
+	// Loop to check if array is increasing
+	for i := 0; i < len(nums)-1; i++ {
+		// To check if
+		// array is not increasing
+		if nums[i] > nums[i+1] {
+			inc = false
 		}
 	}
 
-	return result
+	// Loop to check if array is decreasing
+	for i := 0; i < len(nums)-1; i++ {
+
+		// To check if
+		// array is not decreasing
+		if nums[i] < nums[i+1] {
+			dec = false
+		}
+	}
+
+	// Pick one whether inc or dec
+	return inc || dec
+
 }
