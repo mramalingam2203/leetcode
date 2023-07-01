@@ -4,24 +4,34 @@ package main
 
 import (
 	"fmt"
-	//"os"
+	"os"
 )
 
 func main() {
-	repeatedSubstringPattern("abcabcabcabcabc")
+	fmt.Println(repeatedSubstringPattern("abcabcabcabcabc"))
 }
 
 func repeatedSubstringPattern(s string) bool {
+
+	// Constraints
+
+	if len(s) < 1 || len(s) > 1e4 {
+		fmt.Println("repeated substring string invalid length")
+		os.Exit(0)
+	}
+
 	runeS := []rune(s)
-	for i := 0; i < len(runes); i++ {
-		if i != 0 && i%len(runes) == 0 {
-			runes_2D := make([][]rune, i)
-			runes_2D = convertTo2D(runeS, i)
-			fmt.Print(runes_2D)
+	for i := 0; i < len(runeS)/2; i++ {
+		if i != 0 && len(runeS)%i == 0 {
+			runeS_2D := make([][]rune, i)
+			runeS_2D = convertTo2D(runeS, i)
+			if allSubslicesEqual(runeS_2D) {
+				return true
+			}
 		}
 	}
 
-	return true
+	return false
 }
 
 func convertTo2D(slice []rune, columns int) [][]rune {
@@ -42,4 +52,35 @@ func convertTo2D(slice []rune, columns int) [][]rune {
 	}
 
 	return result
+}
+
+func allSubslicesEqual(slice [][]rune) bool {
+	if len(slice) == 0 {
+		return true
+	}
+
+	firstSubslice := slice[0]
+
+	for i := 1; i < len(slice); i++ {
+		subslice := slice[i]
+		if !equalSubslices(firstSubslice, subslice) {
+			return false
+		}
+	}
+
+	return true
+}
+
+func equalSubslices(subslice1, subslice2 []rune) bool {
+	if len(subslice1) != len(subslice2) {
+		return false
+	}
+
+	for i := 0; i < len(subslice1); i++ {
+		if subslice1[i] != subslice2[i] {
+			return false
+		}
+	}
+
+	return true
 }
