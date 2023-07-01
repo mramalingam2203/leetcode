@@ -12,10 +12,7 @@ func main() {
 }
 
 func repeatedSubstringPattern(s string) bool {
-	for i := 0; i < len(s); i++ {
-		if i != 0 && len(s)%i == 0 {
-			fmt.Println(i, s[i])
-		}
-	}
+	runeS := []rune(s)
+	fmt.Println(runeS)
 	return true
 }
