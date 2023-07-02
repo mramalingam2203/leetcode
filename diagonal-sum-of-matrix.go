@@ -22,16 +22,6 @@ func diagonalSum(mat [][]int) int {
 			}
 		}
 	}
-	/*
-		for i := 0; i < rows; i++ {
-			for j := 0; j < columns; j++ {
-				if i == rows-(j+1) {
-					//fmt.Println(i, j)
-					fmt.Println(mat[i][j])
-					sum += mat[i][j]
-				}
-			}
-		}
-	*/
+
 	return sum
 }
