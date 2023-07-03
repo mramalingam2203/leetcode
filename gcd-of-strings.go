@@ -54,7 +54,7 @@ func convertTo2D(slice []rune, columns int) [][]rune {
 		}
 		result[i] = slice[start:end]
 	}
-
+	fmt.Println(result[0])
 	return result
 }
 
