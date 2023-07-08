@@ -16,6 +16,7 @@ func main() {
 }
 
 func longestAlternatingSubarray(nums []int, threshold int) int {
+
 	return 0
 }
 
@@ -27,7 +28,7 @@ func findSubarrays(arr []int) [][]int {
 		for j := i; j < n; j++ {
 			subarray := arr[i : j+1]
 			subarrays = append(subarrays, subarray)
-			fmt.Print(i, " ", j)
+
 		}
 	}
 
