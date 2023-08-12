@@ -8,12 +8,20 @@ import (
 )
 
 func sumOfMultiples(n int) int {
-	return 0
+	sum := 0
+	for i := 1; i <= n; i++ {
+		if divisibility(i) == true {
+			sum += i
+		}
+	}
+
+	return sum
 }
 
 func main() {
-	N := 28
-	fmt.Println(divisibility(N))
+	N := 9
+	fmt.Println(sumOfMultiples(N))
+
 }
 
 func divisibility(n int) bool {
@@ -35,7 +43,19 @@ func divisibility(n int) bool {
 		return true
 	}
 
-	// by 7
+	return divisibilityBy7(n)
+}
 
-	return false
+func divisibilityBy7(n int) bool {
+
+	if n == 0 || n == 7 {
+		return true
+	}
+
+	if n < 7 {
+		return false
+	}
+
+	return divisibilityBy7(n - 7)
+
 }
