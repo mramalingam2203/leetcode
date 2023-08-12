@@ -8,6 +8,15 @@ import (
 )
 
 func findGCD(nums []int) int {
+	if len(nums) < 2 || len(nums) > 1000 {
+		return 0
+	}
+
+	for _, i := range nums {
+		if nums[i] < 1 || nums[i] > 1000 {
+			return 0
+		}
+	}
 
 	sort.Ints(nums)
 	fmt.Println(nums)
@@ -24,6 +33,6 @@ func gcd(a int, b int) int {
 }
 
 func main() {
-	list := []int{7, 5, 6, 8, 3}
+	list := []int{3, 3}
 	fmt.Println(findGCD(list))
 }
