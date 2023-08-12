@@ -8,8 +8,8 @@ import (
 )
 
 func main() {
-	list := []int{3, 1, 2, 10, 1}
-	fmt.Println(runningSum(list))
+	list := []int{10, 4, 8, 3}
+	leftRightDifference(list)
 }
 
 func leftRightDifference(nums []int) []int {
@@ -18,7 +18,18 @@ func leftRightDifference(nums []int) []int {
 		os.Exit(0)
 	}
 
-	fmt.Println(cumulativeSum(nums))
+	sums := cumulativeSum(nums)
+	fmt.Println(sums)
+	n := len(sums)
+
+	for i := 1; i < n-1; i++ {
+		left := sums[0] - sums[i-1]
+		right := sums[i] - sums[n-1]
+		fmt.Print(left-right, " ")
+
+	}
+
+	return nums
 
 }
 
