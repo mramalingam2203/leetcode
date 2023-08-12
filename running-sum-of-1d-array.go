@@ -2,18 +2,29 @@
 
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
 func main() {
-	list := []int{1, 2, 3, 4}
+	list := []int{3, 1, 2, 10, 1}
 	fmt.Println(runningSum(list))
 }
 
 func runningSum(nums []int) []int {
+	if len(nums) < 1 || len(nums) > 1000 {
+		fmt.Println("invalid inputs")
+		os.Exit(0)
+	}
+	sums := make([]int, len(nums))
 
-	sums := make([]int, 0, len(nums))
+	for i := 0; i < len(nums); i++ {
+		if nums[i] < -1e6 || nums[i] > 1e6 {
+			fmt.Println("invalid inputs")
+			os.Exit(0)
+		}
 
-	for _, i := range nums {
 		if i != 0 {
 			sums[i] = sums[i-1] + nums[i]
 		} else {
@@ -21,4 +32,5 @@ func runningSum(nums []int) []int {
 		}
 	}
 
+	return sums
 }
