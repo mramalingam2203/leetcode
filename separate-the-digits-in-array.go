@@ -1,8 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"strconv"
+	"strings"
 )
 
 func separateDigits(nums []int) []int {
@@ -13,20 +13,15 @@ func separateDigits(nums []int) []int {
 		digits[i] = strconv.Itoa(nums[i])
 	}
 
-	/* 	digits_1 := strings.Join(digits, "")
-	   	results := strings.ReplaceAll(digits_1, " ", "")
-	*/
-	//fmt.Println(digits_1)
+	digits_1 := strings.Join(digits, "")
+	results := strings.ReplaceAll(digits_1, " ", "")
 
-	digits_int := make([]int, len(nums))
+	digits_int := make([]int, 0)
 
-	for i := 0; i < len(digits_1); i++ {
-		k, _ := strconv.Atoi(string(digits_1[i]))
+	for i := 0; i < len(results); i++ {
+		k, _ := strconv.Atoi(string(results[i]))
 		digits_int = append(digits_int, k)
 	}
-
-	fmt.Println(digits_int)
-
 	return digits_int
 
 }
