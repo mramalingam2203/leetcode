@@ -1,10 +1,18 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
 func spiral_simulation(array [][]int) []int {
 	m := len(array)    // number of rows
 	n := len(array[0]) // number of columns
+
+	if m < 1 || n < 1 || m > 10 || m > 10 {
+		fmt.Println("Invalid matrix size")
+		os.Exit(0)
+	}
 
 	ans := []int{}
 
@@ -24,6 +32,10 @@ func spiral_simulation(array [][]int) []int {
 
 	var newX, newY int
 	for i := 0; i < m*n; i++ {
+		if array[x][y] < -100 || array[x][y] > 100 {
+			fmt.Println("values out of range")
+			os.Exit(0)
+		}
 		ans = append(ans, array[x][y])
 		seen[x][y] = true
 
