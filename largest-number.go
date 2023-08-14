@@ -3,6 +3,7 @@
 package main
 
 import (
+	"fmt"
 	"strconv"
 )
 
@@ -20,6 +21,22 @@ func largestNumber(nums []int) string {
 
 		s1[i] = strconv.Itoa(nums[i])
 	}
+
+	for i := 0; i < len(nums); i++ {
+
+		if i != len(nums)-1 {
+			fmt.Println(myCompare(s1[i], s1[i+1]))
+		}
+	}
+}
+
+func myCompare(str1, str2) bool {
+
+	if str1+str2 > str2+str1 {
+		return false
+	}
+
+	return true
 
 }
 
