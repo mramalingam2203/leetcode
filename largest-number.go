@@ -3,15 +3,24 @@
 package main
 
 import (
+	"fmt"
 	"sort"
 	"strconv"
+	"strings"
 )
 
 func largestNumber(nums []int) string {
+	if len(nums) < 1 || len(nums) > 100 {
+		return "0"
+	}
 
 	s1 := make([]string, len(nums))
 
 	for i := 0; i < len(nums); i++ {
+		if nums[i] < 0 || nums[i] > 1e9 {
+			return "0"
+		}
+
 		s1[i] = strconv.Itoa(nums[i])
 	}
 
@@ -23,9 +32,12 @@ func largestNumber(nums []int) string {
 		}
 	}
 
-	s3 := sort.Sort(sort.Reverse(sort.StringSlice(s2)))
+	sort.Sort(sort.Reverse(sort.StringSlice(s2)))
 
-	return "hi"
+	s3 := strings.Join(s2, "")
+	fmt.Println(s3)
+
+	return s3
 }
 
 func main() {
