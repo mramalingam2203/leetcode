@@ -4,6 +4,7 @@ package main
 
 import (
 	"fmt"
+	"sort"
 	"strconv"
 )
 
@@ -22,16 +23,24 @@ func largestNumber(nums []int) string {
 		s1[i] = strconv.Itoa(nums[i])
 	}
 
-	for i := 0; i < len(nums); i++ {
+	// Sort the slice using the compare function
+	sort.Slice(nums, func(i, j int) bool {
+		return myCompare(s1[i], s1[j])
+	})
 
-		if i != len(nums)-1 {
-			fmt.Println(myCompare(s1[i], s1[i+1]))
-		}
-	}
+	// Sort the slice in descending order using a custom comparator
+	sort.Slice(s1, func(i, j string) bool {
+		return s1[i] > s2[j] // Compare in descending order
+	})
+
+	fmt.Println(s1)
+
+	return "hi"
 }
 
-func myCompare(str1, str2) bool {
+func myCompare(str1 string, str2 string) bool {
 
+	fmt.Println(str1+str2, str2+str1)
 	if str1+str2 > str2+str1 {
 		return false
 	}
