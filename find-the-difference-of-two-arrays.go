@@ -22,7 +22,7 @@ func findDifference(nums1 []int, nums2 []int) [][]int {
 			fmt.Println("Invalid number values")
 			os.Exit(0)
 		}
-		if !linearSearch(nums2, nums1[i]) {
+		if !binarySearch(nums2, nums1[i]) {
 			list_1 = append(list_1, nums1[i])
 		}
 
@@ -34,16 +34,16 @@ func findDifference(nums1 []int, nums2 []int) [][]int {
 			os.Exit(0)
 		}
 
-		if !linearSearch(nums1, nums2[i]) {
+		if !binarySearch(nums1, nums2[i]) {
 			list_2 = append(list_2, nums2[i])
 		}
 	}
 
-	removeDuplicates(list_1)
-	removeDuplicates(list_2)
+	list_1 = removeDuplicates(list_1)
+	list_2 = removeDuplicates(list_2)
 
 	result := [][]int{list_1, list_2}
-
+	fmt.Println(result)
 	return result
 
 }
@@ -69,6 +69,24 @@ func removeDuplicates(nums []int) []int {
 	}
 
 	return result
+}
+
+func binarySearch(arr []int, target int) bool {
+	left, right := 0, len(arr)-1
+
+	for left <= right {
+		mid := left + (right-left)/2
+
+		if arr[mid] == target {
+			return true
+		} else if arr[mid] < target {
+			left = mid + 1
+		} else {
+			right = mid - 1
+		}
+	}
+
+	return false
 }
 
 func main() {
