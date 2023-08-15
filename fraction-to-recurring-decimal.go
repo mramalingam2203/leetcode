@@ -30,7 +30,12 @@ func fractionToDecimal(numerator int, denominator int) string {
 
 	result += "."
 
+	remainMap := make(map[int]int)
+
 	for remainder != 0 {
+
+		// Add current remainder to the map
+		remainMap[remainder] = len(result)
 
 		remainder *= 10
 		result += strconv.Itoa(remainder / denominator)
