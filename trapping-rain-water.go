@@ -13,6 +13,10 @@ func main() {
 func trap(height []int) int {
 
 	n := len(height)
+
+	if n < 1 || n > 2e4 {
+		return 0
+	}
 	leftMax := make([]int, n)
 	rightMax := make([]int, n)
 
@@ -20,6 +24,9 @@ func trap(height []int) int {
 	rightMax[n-1] = height[n-1]
 
 	for i := 1; i <= n-1; i++ {
+		if height[i] < 0 || height[i] > 1e5 {
+			return 0
+		}
 		leftMax[i] = max(leftMax[i-1], height[i])
 	}
 
