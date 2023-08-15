@@ -2,36 +2,54 @@
 
 package main
 
-import (
-	"fmt"
-	"sort"
-)
+import "sort"
+
+type Interval struct {
+	Start int
+	End   int
+}
+
+func mergeIntervals(intervals []Interval) []Interval {
+
+	if len(intervals) <= 1 {
+		return intervals
+	}
+
+	// Sort intervals based on their start times
+	sort.Slice(intervals, func(i, j int) bool {
+		return intervals[i].Start < intervals[j].Start
+	})
+
+	var merged []Interval
+	merged = append(merged, intervals[0])
+
+	for i := 1; i < len(intervals); i++ {
+		current := intervals[i]
+		previous := merged[len(merged)-1]
+
+		if current.Start <= previous.End {
+			if current.End > previous.End {
+				previous.End = current.End
+			}
+		} else {
+			merged = append(merged, current)
+		}
+	}
+
+	return merged
+}
+
+
 
 func merge(intervals [][]int) [][]int {
 
-	// Use the sort.Slice function with a custom comparator
-	sort.Slice(intervals, func(i, j int) bool {
-		return intervals[i][0] < intervals[j][0]
-	})
-
-	results := [][]int{{}}
-
-	for i := 0; i < len(intervals)-1; i++ {
-
-		if intervals[i][1] >= intervals[i+1][0] {
-
-		} else {
-
-			int1 := min(intervals[i][0], intervals[i+1][0])
-			int2 := max(intervals[i][1], intervals[i+1][1])
-
-			fmt.Println(int1, int2)
-
-		}
-
+	intervalStruct := make([]Interval, len(intervals)
+	for i := range intervals {
+		intervalStruct[i].Start = intervals[i][0]
+		intervalStruct[i].End = intervals[i][1]
 	}
 
-	return results
+	mergeIntervals(intervalStruct []Interval) []Interval {
 
 }
 
