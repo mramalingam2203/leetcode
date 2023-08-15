@@ -24,10 +24,25 @@ func trap(height []int) int {
 		rightMax[i] = max(rightMax[i+1], height[i])
 	}
 
+	for i := 0; i < n; i++ {
+		trappedWater += min(leftMax[i], rightMax[i]) - height[i]
+	}
+
+	return trappedWater
+
 }
 
 func max(a int, b int) int {
 	if a > b {
+		return a
+	}
+
+	return b
+
+}
+
+func min(a int, b int) int {
+	if a < b {
 		return a
 	}
 
