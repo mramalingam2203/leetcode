@@ -8,29 +8,30 @@ import (
 )
 
 func main() {
-
+	fmt.Println(findComplement(1))
 }
 
 func findComplement(num int) int {
 	s := intToBinary(num)
-	fmt.Println(complement(s))
-
+	return complement(s)
 }
 
-func complement(s str) int {
+func complement(s string) int {
 
 	empty := ""
 
-	for i:=0; i < len(s); i++ {
-		if s[i] == '0'{
+	for i := 0; i < len(s); i++ {
+		if s[i] == '0' {
 			empty += "1"
-		}else{
+		} else {
 			empty += "0"
 		}
-	
-	_, num := strconv.Atoi(empty)
+	}
 
-	return num
+	intValue, err := strconv.ParseInt(empty, 2, 0)
+	_ = err
+	return int(intValue)
+
 }
 
 func intToBinary(n int) string {
