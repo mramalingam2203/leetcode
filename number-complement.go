@@ -19,10 +19,18 @@ func findComplement(num int) int {
 
 func complement(s str) int {
 
+	empty := ""
+
 	for i:=0; i < len(s); i++ {
-		
+		if s[i] == '0'{
+			empty += "1"
+		}else{
+			empty += "0"
+		}
+	
+	_, num := strconv.Atoi(empty)
 
-
+	return num
 }
 
 func intToBinary(n int) string {
