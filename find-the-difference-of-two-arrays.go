@@ -4,14 +4,24 @@ package main
 
 import (
 	"fmt"
+	"os"
 )
 
 func findDifference(nums1 []int, nums2 []int) {
+
+	if len(nums1) < 1 || len(nums2) < 1 || len(nums1) > 1000 || len(nums2) > 1000 {
+		fmt.Println("Invalid array lengths")
+		os.Exit(0)
+	}
 
 	list_1 := []int{}
 	list_2 := []int{}
 
 	for i := 0; i < len(nums1); i++ {
+		if nums1[i] < -1000 || nums1[i] > 1000 {
+			fmt.Println("Invalid number values")
+			os.Exit(0)
+		}
 		if !linearSearch(nums2, nums1[i]) {
 			list_1 = append(list_1, nums1[i])
 		}
@@ -19,6 +29,11 @@ func findDifference(nums1 []int, nums2 []int) {
 	}
 
 	for i := 0; i < len(nums2); i++ {
+		if nums2[i] < -1000 || nums2[i] > 1000 {
+			fmt.Println("Invalid number values")
+			os.Exit(0)
+		}
+
 		if !linearSearch(nums1, nums2[i]) {
 			list_2 = append(list_2, nums2[i])
 		}
