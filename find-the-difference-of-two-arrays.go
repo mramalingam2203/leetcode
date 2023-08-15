@@ -7,7 +7,7 @@ import (
 	"os"
 )
 
-func findDifference(nums1 []int, nums2 []int) {
+func findDifference(nums1 []int, nums2 []int) [][]int {
 
 	if len(nums1) < 1 || len(nums2) < 1 || len(nums1) > 1000 || len(nums2) > 1000 {
 		fmt.Println("Invalid array lengths")
@@ -37,10 +37,14 @@ func findDifference(nums1 []int, nums2 []int) {
 		if !linearSearch(nums1, nums2[i]) {
 			list_2 = append(list_2, nums2[i])
 		}
-
 	}
 
-	fmt.Println(list_1, list_2)
+	removeDuplicates(list_1)
+	removeDuplicates(list_2)
+
+	result := [][]int{list_1, list_2}
+
+	return result
 
 }
 
@@ -51,6 +55,20 @@ func linearSearch(arr []int, target int) bool {
 		}
 	}
 	return false
+}
+
+func removeDuplicates(nums []int) []int {
+	unique := make(map[int]bool)
+	result := []int{}
+
+	for _, num := range nums {
+		if !unique[num] {
+			unique[num] = true
+			result = append(result, num)
+		}
+	}
+
+	return result
 }
 
 func main() {
