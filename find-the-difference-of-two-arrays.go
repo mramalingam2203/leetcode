@@ -2,24 +2,45 @@
 
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
-func findDifference(nums1 []int, nums2 []int) [][]int {
+func findDifference(nums1 []int, nums2 []int) {
 
-	diff := make([]int, 0, len(nums1))
+	list_1 := []int{}
+	list_2 := []int{}
 
 	for i := 0; i < len(nums1); i++ {
-
-		diff[i] = nums1[i] - nums2[i]
+		if !linearSearch(nums2, nums1[i]) {
+			list_1 = append(list_1, nums1[i])
+		}
 
 	}
 
-	fmt.Println(diff)
+	for i := 0; i < len(nums2); i++ {
+		if !linearSearch(nums1, nums2[i]) {
+			list_2 = append(list_2, nums2[i])
+		}
+
+	}
+
+	fmt.Println(list_1, list_2)
+
+}
+
+func linearSearch(arr []int, target int) bool {
+	for _, num := range arr {
+		if num == target {
+			return true
+		}
+	}
+	return false
 }
 
 func main() {
-	list_1 := []int{1, 2, 3}
-	list_2 := []int{2, 4, 6}
+	list_1 := []int{1, 2, 3, 3}
+	list_2 := []int{1, 1, 2, 2}
 
 	findDifference(list_1, list_2)
 }
