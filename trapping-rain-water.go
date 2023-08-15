@@ -2,9 +2,12 @@
 
 package main
 
+import "fmt"
+
 func main() {
 
-	bars := []int{0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1}
+	bars := []int{4, 2, 0, 3, 2, 5}
+	fmt.Println(trap(bars))
 }
 
 func trap(height []int) int {
@@ -16,13 +19,15 @@ func trap(height []int) int {
 	leftMax[0] = height[0]
 	rightMax[n-1] = height[n-1]
 
-	for i := 0; i < n-1; i++ {
+	for i := 1; i <= n-1; i++ {
 		leftMax[i] = max(leftMax[i-1], height[i])
 	}
 
-	for i := n - 2; i > 0; i-- {
+	for i := n - 2; i >= 0; i-- {
 		rightMax[i] = max(rightMax[i+1], height[i])
 	}
+
+	var trappedWater int = 0
 
 	for i := 0; i < n; i++ {
 		trappedWater += min(leftMax[i], rightMax[i]) - height[i]
