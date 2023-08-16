@@ -5,9 +5,8 @@ package main
 import "fmt"
 
 func main() {
-	array := []int{1, 2, 3, 4}
-	//findPeakElement(array)
-	fmt.Println(max(array))
+	array := []int{1, 2, 3, 4, 1}
+	fmt.Println(findPeakElement(array))
 }
 
 func findPeakElement(nums []int) int {
