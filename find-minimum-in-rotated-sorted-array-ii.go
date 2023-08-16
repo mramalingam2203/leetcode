@@ -5,8 +5,7 @@ package main
 import "fmt"
 
 func main() {
-	array := []int{2, 2, 2, 0, 1}
-	removeDuplicates(array)
+	array := []int{3, 3, 1, 3}
 	fmt.Println(findMin(array))
 }
 
@@ -25,16 +24,18 @@ func removeDuplicates(nums []int) []int {
 }
 
 func findMin(nums []int) int {
-	if len(nums) < 1 || len(nums) > 5000 {
+	uniques := removeDuplicates(nums)
+
+	if len(uniques) < 1 || len(uniques) > 5000 {
 		return 0
 	}
 	left := 0
-	right := len(nums) - 1
+	right := len(uniques) - 1
 
 	for left < right {
 		mid := (left + right) / 2
-		if nums[mid] > nums[right] {
-			if nums[mid] < -5000 || nums[mid] > 5000 || nums[right] < -5000 || nums[mid] > 5000 {
+		if uniques[mid] > uniques[right] {
+			if uniques[mid] < -5000 || uniques[mid] > 5000 || uniques[right] < -5000 || uniques[mid] > 5000 {
 				return 0
 			}
 			left = mid + 1
@@ -43,6 +44,6 @@ func findMin(nums []int) int {
 		}
 	}
 
-	return nums[left]
+	return uniques[left]
 
 }
