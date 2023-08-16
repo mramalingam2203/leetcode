@@ -2,9 +2,11 @@
 
 package main
 
+import "fmt"
+
 func main() {
-	array := []int{1, 2, 3, 4}
-	generateSubArrays(array)
+	array := []int{-2, 0, -1}
+	maxProduct(array)
 }
 
 func maxProduct(nums []int) int {
@@ -13,12 +15,40 @@ func maxProduct(nums []int) int {
 		return 0
 	}
 
+	var subarrays [][]int
+	var product, max int
+
+	subarrays = generateSubarrays(nums)
+
+	for i := 0; i < len(subarrays); i++ {
+		product = 1
+		for j := 0; j < len(subarrays[i]); j++ {
+			product *= subarrays[i][j]
+			if subarrays[i][j] < -10 || subarrays[i][j] > 10 {
+				return 0
+			}
+		}
+		if product > max {
+			max = product
+		}
+
+	}
+	fmt.Println(max)
+	return 0
 }
 
-func generateSubArrays(nums []int) [][]int {
+func generateSubarrays(arr []int) [][]int {
+	var subarrays [][]int
 
-	subarray := make([][]int)
-
+	for start := 0; start < len(arr); start++ {
+		for end := start + 1; end <= len(arr); end++ {
+			subarray := []int{}
+			for i := start; i < end; i++ {
+				subarray = append(subarray, arr[i])
+			}
+			subarrays = append(subarrays, subarray)
+		}
+	}
+	//fmt.Println(subarrays)
 	return subarrays
-
 }
