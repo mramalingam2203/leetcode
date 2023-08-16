@@ -34,6 +34,14 @@ func fractionToDecimal(numerator int, denominator int) string {
 
 	for remainder != 0 {
 
+		if _, found := remainMap[remainder]; found {
+
+			insertPosition := remainMap[remainder]
+			recurringPart := result[insertPosition:]
+			result = result[:insertPosition] + "(" + recurringPart + ")"
+			break
+		}
+
 		// Add current remainder to the map
 		remainMap[remainder] = len(result)
 
@@ -41,7 +49,7 @@ func fractionToDecimal(numerator int, denominator int) string {
 		result += strconv.Itoa(remainder / denominator)
 		remainder %= denominator
 
-		fmt.Println(remainder)
+		//	fmt.Println(remainder)
 	}
 
 	return result
@@ -59,5 +67,5 @@ func abs(a int) int {
 
 func main() {
 
-	fractionToDecimal(22, 7)
+	fmt.Println(fractionToDecimal(22, 7))
 }
