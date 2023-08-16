@@ -2,8 +2,6 @@
 
 package main
 
-import "fmt"
-
 func main() {
 	array := []int{-2, 0, -1}
 	maxProduct(array)
@@ -33,8 +31,7 @@ func maxProduct(nums []int) int {
 		}
 
 	}
-	fmt.Println(max)
-	return 0
+	return max
 }
 
 func generateSubarrays(arr []int) [][]int {
