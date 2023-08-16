@@ -2,6 +2,8 @@
 
 package main
 
+import "math"
+
 func main() {
 	array := []int{-2, 0, -1}
 	maxProduct(array)
@@ -13,6 +15,10 @@ func maxProduct(nums []int) int {
 		return 0
 	}
 
+	if len(nums) == 1 {
+		return nums[0]
+	}
+
 	var subarrays [][]int
 	var product, max int
 
@@ -22,6 +28,9 @@ func maxProduct(nums []int) int {
 		product = 1
 		for j := 0; j < len(subarrays[i]); j++ {
 			product *= subarrays[i][j]
+			if product >= math.MaxInt {
+				return 0
+			}
 			if subarrays[i][j] < -10 || subarrays[i][j] > 10 {
 				return 0
 			}
@@ -49,3 +58,5 @@ func generateSubarrays(arr []int) [][]int {
 	//fmt.Println(subarrays)
 	return subarrays
 }
+
+// ALgorithm works local but fails on Leetcode due to memory overflow
