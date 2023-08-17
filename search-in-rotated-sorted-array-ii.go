@@ -10,7 +10,41 @@ func search(nums []int, target int) bool {
 		return false
 	}
 
+	if len(nums) == 1 && nums[0] == target {
+		return true
+	} else if len(nums) == 1 && nums[0] != target {
+		return false
+	}
+
+	if len(nums) == 2 {
+		if nums[0] == target || nums[1] == target {
+			return true
+		}
+		return false
+	}
+
+	if len(nums) == 3 {
+		if nums[0] == target || nums[1] == target || nums[2] == target {
+			return true
+		}
+		return false
+	}
+
+	if len(nums) == 4 {
+		return binarySearch(nums, target)
+	}
+
 	pivot := findPivotIndex(nums)
+
+	if pivot < 0 {
+		return true
+	}
+	fmt.Println("was here")
+
+	if nums[pivot] == target {
+		return true
+	}
+	fmt.Println("was here")
 
 	if nums[pivot] > target {
 		if binarySearch(nums[pivot:len(nums)-1], target) == true {
@@ -20,10 +54,7 @@ func search(nums []int, target int) bool {
 		if binarySearch(nums[0:pivot], target) == true {
 			return true
 		}
-	} else {
-		return true
 	}
-
 	return false
 }
 
@@ -76,9 +107,10 @@ func findPivotIndex(nums []int) int {
 
 func main() {
 
-	array := []int{2, 5, 6, 0, 0, 1, 2}
-	target := 3
+	array := []int{1, 1, 1, 3}
+	target := 0
+	//fmt.Println(array[findPivotIndex(array)])
+
 	fmt.Println(search(array, target))
-	//fmt.Println(findPivotIndex(array))
 
 }
