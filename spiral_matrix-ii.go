@@ -82,3 +82,5 @@ func generateMatrix(n int) [][]int {
 	return matrix
 
 }
+
+// accepted by leetcode
