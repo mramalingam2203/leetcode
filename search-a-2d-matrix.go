@@ -17,7 +17,21 @@ func searchMatrix(matrix [][]int, target int) bool {
     left := 0
     right := m * n - 1
 
-	
+	for left <= right {
+
+		mid := left + (right - left) / 2
+		midValue := matrix[mid / n][mid % n]
+
+		if midValue == target{
+			return true
+		} else if midValue < target{
+			left = mid++
+		}else{
+			right = mid--
+		}
+	}
+
+	return bool
 
     
 }
