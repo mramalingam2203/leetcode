@@ -2,11 +2,14 @@
 
 package main
 
-import "strconv"
+import (
+	"fmt"
+	"strconv"
+)
 
 func main() {
 
-	isValidSegment("009")
+	fmt.Println(isValidSegment("-255"))
 
 }
 
