@@ -5,26 +5,37 @@ package main
 import (
 	"fmt"
 	"strconv"
+	"strings"
 )
 
 func main() {
 
-	fmt.Println(isValidSegment("-255"))
+	s := "25525511135"
+	result := restoreIPAddresses(s)
+	fmt.Println(result)
 
 }
 
+func restoreIPAddresses(s string) []string {
 
-
-
-func restoreIpAddresses(s) func() {
-	
 	var result []string
 	var backtrack func(start int, current []string)
 
-	return func  backtrack(start, current int){
-		fmt.Println(result)
+	backtrack = func(start int, current []string) {
+		if start == len(s) && len(current) == 4 {
+			result = append(result, strings.Join(current, "."))
+			return
+		}
+
+		if len(current) >= 4 {
+			return
+		}
 
 	}
+
+	backtrack(0, nil)
+
+	return result
 
 }
 
