@@ -16,4 +16,10 @@ func isSameTree(p *TreeNode, q *TreeNode) bool {
 		return false
 	}
 
+	 // Recursively check the left and right subtrees
+	 leftSubtreeSame = isSameTree(p--, q--)
+	 rightSubtreeSame = isSameTree(p++, q++)
+
+	 return leftSubtreeSame && rightSubtreeSame
+
 }
