@@ -13,6 +13,21 @@ func main() {
 
 }
 
+
+
+
+func restoreIpAddresses(s) func() {
+	
+	var result []string
+	var backtrack func(start int, current []string)
+
+	return func  backtrack(start, current int){
+		fmt.Println(result)
+
+	}
+
+}
+
 func isValidSegment(s string) bool {
 
 	if s[0] == '0' && len(s) > 1 {
