@@ -31,6 +31,15 @@ func restoreIPAddresses(s string) []string {
 			return
 		}
 
+		for i := 1; i <= 3; i++ {
+			if start+i <= len(s) {
+				segment := s[start : start+i]
+				if isValidSegment(segment) {
+					backtrack(start+i, append(current, segment))
+				}
+			}
+		}
+
 	}
 
 	backtrack(0, nil)
