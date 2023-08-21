@@ -1,6 +1,5 @@
 // Given the root of a binary tree, return its maximum depth.
 
-
 package main
 
 import "fmt"
@@ -10,8 +9,6 @@ type TreeNode struct {
 	Left  *TreeNode
 	Right *TreeNode
 }
-
-
 
 func main() {
 
@@ -30,22 +27,27 @@ func main() {
 		},
 	}
 
-	fmt.Println(maxDepth(root)) // Output: true
+	fmt.Println(maxDepth(root))
 
 }
 
-func maxDepth(root){
+func maxDepth(root *TreeNode) int {
 
-
-    if root is null{
-        return 0
+	if root == nil {
+		return 0
 	}
-    
-    leftDepth := maxDepth(root.Left)
-    rightDepth = maxDepth(root.Right)
-    
-    return 1 + max(leftDepth, rightDepth)
+
+	leftDepth := maxDepth(root.Left)
+	rightDepth := maxDepth(root.Right)
+
+	return 1 + max(leftDepth, rightDepth)
 
 }
 
+func max(a, b int) int {
+	if a < b {
+		return b
+	}
 
+	return a
+}
