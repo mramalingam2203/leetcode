@@ -10,6 +10,9 @@ type TreeNode struct {
 
 func main() {
 
+	array := []int{1, 2, 2, 3, 4, 4, 3}
+	isSymmetric(array[0])
+
 }
 
 func isSymmetric(root *TreeNode) bool {
@@ -22,18 +25,14 @@ func isSymmetric(root *TreeNode) bool {
 
 }
 
-
-
-function isMirror(left, right):
-    if left == nil && right == null{
-        return true
+func isMirror(left, right *TreeNode) bool {
+	if left == nil && right == nil {
+		return true
 	}
-    if left == null || right == null{
-        return false
+	if left == nil || right == nil {
+		return false
 	}
-    
-    return (left.value = right.value) &&
-           isMirror(left.Left, right.Right) &&
-           isMirror(left.Right, right.Left)
+
+	return left.Val == right.Val && isMirror(left.Left, right.Right) && isMirror(left.Right, right.Left)
 
 }
