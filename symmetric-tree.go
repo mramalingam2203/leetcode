@@ -2,6 +2,8 @@
 
 package main
 
+import "fmt"
+
 type TreeNode struct {
 	Val   int
 	Left  *TreeNode
@@ -10,8 +12,22 @@ type TreeNode struct {
 
 func main() {
 
-	array := []int{1, 2, 2, 3, 4, 4, 3}
-	isSymmetric(array[0])
+	// Example usage
+	root := &TreeNode{
+		Val: 1,
+		Left: &TreeNode{
+			Val:   2,
+			Left:  &TreeNode{Val: 3},
+			Right: &TreeNode{Val: 4},
+		},
+		Right: &TreeNode{
+			Val:   2,
+			Left:  &TreeNode{Val: 4},
+			Right: &TreeNode{Val: 3},
+		},
+	}
+
+	fmt.Println(isSymmetric(root)) // Output: true
 
 }
 
