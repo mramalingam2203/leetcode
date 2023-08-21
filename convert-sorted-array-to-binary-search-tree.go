@@ -2,6 +2,13 @@
 
 package main
 
+func main() {
+
+	array := []int{1, 2, 3, 4, 5, 6, 7, 8, 9}
+	sortedArrayToBST(array)
+
+}
+
 type TreeNode struct {
 	Val   int
 	Left  *TreeNode
@@ -9,11 +16,11 @@ type TreeNode struct {
 }
 
 func sortedArrayToBST(nums []int) *TreeNode {
-	return buildBST(nums, 0, length(nums)-1)
+	return buildBST(nums, 0, len(nums)-1)
 
 }
 
-func buildBST(nums, start, end) {
+func buildBST(nums []int, start, end int) *TreeNode {
 
 	if start > end {
 		return nil
@@ -21,10 +28,15 @@ func buildBST(nums, start, end) {
 
 	middleIndex := (start + end) / 2
 
-	root = TreeNode(nums[middleIndex])
+	root := &TreeNode{
+		Val: nums[middleIndex],
+	}
 
-}
+	//root := TreeNode(nums[middleIndex])
 
-func main() {
+	root.Left = buildBST(nums, start, middleIndex-1)
+	root.Right = buildBST(nums, middleIndex+1, end)
+
+	return root
 
 }
