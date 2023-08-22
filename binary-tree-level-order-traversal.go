@@ -2,7 +2,10 @@
 
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
 type TreeNode struct {
 	Val   int
@@ -40,21 +43,35 @@ func levelOrder(root *TreeNode) [][]int {
 	}
 
 	queue := []*TreeNode{root}
-
+	var nTreeNodes int = 0
 	for len(queue) > 0 {
+
 		levelSize := len(queue)
 		levelValues := make([]int, 0, levelSize)
 
 		for i := 0; i < levelSize; i++ {
 			current := queue[0]
 			queue = queue[1:]
+
+			if current.Val < -1000 || current.Val > 1000 {
+				fmt.Println("Invalid node value")
+				os.Exit(0)
+			}
+
 			levelValues = append(levelValues, current.Val)
 
 			if current.Left != nil {
 				queue = append(queue, current.Left)
+				nTreeNodes++
 			}
 			if current.Right != nil {
 				queue = append(queue, current.Right)
+				nTreeNodes++
+			}
+
+			if nTreeNodes > 2000 {
+				fmt.Println("tree too long")
+				os.Exit(0)
 			}
 		}
 
