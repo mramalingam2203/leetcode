@@ -12,37 +12,55 @@ type TreeNode struct {
 
 func main() {
 
+	// Example usage
 	root := &TreeNode{
 		Val: 1,
 		Left: &TreeNode{
-			Val: 2,
-			Left: &TreeNode{
-				Val:  3,
-				Left: &TreeNode{Val: 4},
-			},
+			Val:   2,
+			Left:  &TreeNode{Val: 4},
+			Right: &TreeNode{Val: 5},
 		},
-		Right: &TreeNode{Val: 5},
+		Right: &TreeNode{
+			Val:   3,
+			Left:  &TreeNode{Val: 6},
+			Right: &TreeNode{Val: 7},
+		},
 	}
 
-	levelOrder(root)
+	fmt.Println(levelOrder(root))
 
 }
 
 func levelOrder(root *TreeNode) [][]int {
-	result := [][]int{{}}
+
+	var result [][]int
+
 	if root == nil {
-		return nil
+		return result
 	}
 
-	q := Queue{}
-	q.Enqueue(*root)
+	queue := []*TreeNode{root}
 
-	for !q.IsEmpty() {
-		//current :=
-		fmt.Println(q.Dequeue().Val)
-		//fmt.Println(current.Val)
+	for len(queue) > 0 {
+		levelSize := len(queue)
+		levelValues := make([]int, 0, levelSize)
 
+		for i := 0; i < levelSize; i++ {
+			current := queue[0]
+			queue = queue[1:]
+			levelValues = append(levelValues, current.Val)
+
+			if current.Left != nil {
+				queue = append(queue, current.Left)
+			}
+			if current.Right != nil {
+				queue = append(queue, current.Right)
+			}
+		}
+
+		result = append(result, levelValues)
 	}
 
 	return result
+
 }
