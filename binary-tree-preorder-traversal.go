@@ -35,4 +35,8 @@ func main() {
 
 func preorderTraversal(root *TreeNode) []int {
 
+	result := make([]int, 0)
+	preorder(root, &result)
+	return result
+
 }
