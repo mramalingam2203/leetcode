@@ -24,6 +24,8 @@ func buildTree(preorder []int, inorder []int) *TreeNode {
 	root := &TreeNode{Val: rootValue}
 
 	inorderIndex := findIndex(inorder, rootValue)
+	root.Left = buildTree(preorder[1:inorderIndex+1], inorder[0:inorderIndex])
+	root.Right = buildTree(preorder[inorderIndex+1:], inorder[inorderIndex+1:])
 
 	return root
 
