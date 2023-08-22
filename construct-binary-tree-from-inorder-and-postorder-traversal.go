@@ -14,21 +14,23 @@ func main() {
 
 	preorder := []int{3, 9, 20, 15, 7}
 	postorder := []int{9, 3, 15, 20, 7}
-	fmt.Println(buildTree(preorder, inorder))
+	fmt.Println(buildTree(preorder, postorder))
 }
 
-func buildTree(preorder []int, postorder []int) *TreeNode {
+func buildTree(inorder []int, postorder []int) *TreeNode {
 
-	if len(preorder) == 0 {
+	if len(postorder) == 0 {
 		return nil
 	}
 
-	rootValue := preorder[0]
+	rootValue := postorder[len(postorder)-1]
 	root := &TreeNode{Val: rootValue}
-
 	inorderIndex := findIndex(inorder, rootValue)
-	root.Left = buildTree(preorder[1:inorderIndex+1], postorder[0:inorderIndex])
-	root.Right = buildTree(preorder[inorderIndex+1:], postorder[inorderIndex+1:])
+
+	leftSubtreeSize := inorderIndex
+
+	root.Left := buildTree(inorder[0:leftSubtreeSize], postorder[0:leftSubtreeSize])
+	root.Right = buildTree(inorder[leftSubtreeSize+1:], postorder[leftSubtreeSize:len(postorder)-1])
 
 	return root
 
