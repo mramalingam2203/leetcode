@@ -29,7 +29,7 @@ func buildTree(inorder []int, postorder []int) *TreeNode {
 
 	leftSubtreeSize := inorderIndex
 
-	root.Left := buildTree(inorder[0:leftSubtreeSize], postorder[0:leftSubtreeSize])
+	root.Left = buildTree(inorder[0:leftSubtreeSize], postorder[0:leftSubtreeSize])
 	root.Right = buildTree(inorder[leftSubtreeSize+1:], postorder[leftSubtreeSize:len(postorder)-1])
 
 	return root
