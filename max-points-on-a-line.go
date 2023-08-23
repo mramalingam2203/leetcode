@@ -1,7 +1,10 @@
 // https://leetcode.com/problems/max-points-on-a-line/
 
+package main
+
 func main() {
 	points := [][]int{{1, 1}, {3, 2}, {5, 3}, {4, 1}, {2, 3}, {1, 4}}
+	maxPoints(points)
 }
 
 func maxPoints(points [][]int) int {
@@ -10,13 +13,14 @@ func maxPoints(points [][]int) int {
 		return 0
 	}
 
-	maxPoints := 0
+	var slope, maxPoints int = 0, 0
+	_ = maxPoints
 
 	for i := 0; i < len(points); i++ {
 
 		slopeCount := make(map[int]int)
 
-		vertcalPoints := 0
+		verticalPoints := 0
 
 		for j := 0; j < len(points); j++ {
 
@@ -24,14 +28,28 @@ func maxPoints(points [][]int) int {
 			dy := points[j][1] - points[i][1]
 
 			if dx == 0 {
-				vertcalPoints++
+				verticalPoints++
 			} else {
-				slope := dy / dx
+				slope = dy / dx
+				slopeCount[slope]++
+
 			}
+
+			maxPoints = max(maxPoints, duplicatePoints+verticalPoints)
 
 		}
 
-		fmt.Println(slope)
 	}
 
+	return 0
+
+}
+
+func max(a, b int) int {
+
+	if a > b {
+		return a
+	}
+
+	return b
 }
