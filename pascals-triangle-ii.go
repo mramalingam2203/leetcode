@@ -8,13 +8,11 @@ import (
 )
 
 func main() {
-
-	fmt.Println(generate(5))
-
+	fmt.Println(getRow(3))
 }
 
 func getRow(rowIndex int) []int {
-	return generate(rowIndex)
+	return generate(rowIndex + 1)
 
 }
 
