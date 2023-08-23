@@ -10,15 +10,25 @@ type ListNode struct {
 }
 
 func sortList(head *ListNode) *ListNode {
-	if head == nil || head.next == nil {
+	if head == nil || head.Next == nil {
 		return head
 	}
 
-	 // Step 1: Divide the list
-	 middle := findMiddle(head)
-	 leftHalf := head
-	 rightHalf := middle.next
-	 middle.next := null
+	// Step 1: Divide the list
+	middle := findMiddle(head)
+	leftHalf := head
+	rightHalf := middle.Next
+	middle.Next = nil
+
+	// Step 2: Recursively sort the halves
+	sortedLeft := sortList(leftHalf)
+	sortedRight := sortList(rightHalf)
+
+	// Step 3: Merge the sorted halves
+	sortedList := mergeLists(sortedLeft, sortedRight)
+	return sortedList
+
+	return head
 
 }
 
@@ -32,6 +42,34 @@ func findMiddle(head *ListNode) *ListNode {
 		fast = fast.Next.Next
 	}
 	return slow
+}
+
+func mergeLists(head1, head2 *ListNode) *ListNode {
+
+	var dummyHead *ListNode // Create a dummy head node
+	current := dummyHead
+
+	for head1 != nil && head2 != nil {
+		if head1.Val < head2.Val {
+			current.Next = head2
+			head1 = head1.Next
+		} else {
+			current.Next = head2
+			head2 = head2.Next
+		}
+
+		current = current.Next
+
+	}
+
+	// Attach remaining nodes if any
+	if head1 != nil {
+		current.next = head1
+	} else {
+		current.next = head2
+	}
+
+	return dummyHead.Next
 }
 
 func main() {
