@@ -39,3 +39,26 @@ func replaceChar(input string, index int, newChar byte) string {
 	// Convert the byte slice back to a string
 	return string(bytes)
 }
+
+/* set definitions*/
+type Set map[string]bool
+
+func NewSet() Set {
+	return make(Set)
+}
+
+func (s Set) Add(item string) {
+	s[item] = true
+}
+
+func (s Set) Contains(item string) bool {
+	return s[item]
+}
+
+func (s Set) Remove(item string) {
+	delete(s, item)
+}
+
+func (s Set) Size() int {
+	return len(s)
+}
