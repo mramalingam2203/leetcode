@@ -4,26 +4,28 @@ package main
 
 import(
 	"fmt"
-	"github.com/deckarep/golang-set"
 )
 
 func main() {
 
-	array := []int{0, 3, 7, 2, 5, 8, 4, 6, 0, 1}
-	longestConsecutive(array)
+//	array := []int{0, 3, 7, 2, 5, 8, 4, 6, 0, 1}
+	array := []int{100,4,200,1,3,2}
+	fmt.Println(longestConsecutive(array))
 
 }
 
-longestStreak := 0
 
 func longestConsecutive(nums []int) int {
-	numSet := mapset.NewSet()
+
+	numSet := NewSet()
 
 	// Create a set from the array
 	for _, num := range nums {
 		numSet.Add(num)
 	}
-
+	
+	longestStreak := 0
+	
 	for _, num := range nums {
 		if !numSet.Contains(num - 1) {
 			currentNum := num
@@ -31,17 +33,44 @@ func longestConsecutive(nums []int) int {
 
 			for numSet.Contains(currentNum + 1) {
 
-				currentNum := currentNum + 1
-				currentStreak := currentStreak + 1
+				currentNum++
+				currentStreak++
 
 			}
-		}
-		longestStreak = max(longestStreak, currentStreak)
+		
+			if currentStreak > longestStreak{
+					longestStreak = currentStreak
+			}
 	}
+	
+}				
+
+return longestStreak
+
 }
 
-func max (a, b int)int{
-		if a > b{
-				return a}
-				return b
-		}
+
+
+type Set map[int]bool
+
+func NewSet() Set {
+	return make(Set)
+}
+
+func (s Set) Add(item int) {
+	s[item] = true
+}
+
+func (s Set) Contains(item int) bool {
+	return s[item]
+}
+
+func (s Set) Remove(item int) {
+	delete(s, item)
+}
+
+func (s Set) Size() int {
+	return len(s)
+}
+
+
