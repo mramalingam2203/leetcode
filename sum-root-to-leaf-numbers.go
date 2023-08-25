@@ -14,15 +14,15 @@ func sumNumbers(root *TreeNode) int {
 
 }
 
-func dfs(node *TreeNode, currentNum int) {
+func dfs(node *TreeNode, currentSum int) int {
 
 	if node == nil {
 		return 0
 	}
 
-	currentSum := currentSum*10 + node.Val // Concatenate the current node value to the currentSum
+	currentSum = currentSum*10 + node.Val
 
-	if node.Left != nil && node.Right != nil {
+	if node.Left == nil && node.Right == nil {
 		return currentSum
 	}
 
@@ -34,5 +34,11 @@ func dfs(node *TreeNode, currentNum int) {
 }
 
 func main() {
+
+	root := TreeNode{1, nil, nil}
+	root.left = TreeNode{2}
+	root.right = TreeNode{3}
+	result = sumNumbers(root)
+	print("Sum of root-to-leaf numbers:", result)
 
 }
