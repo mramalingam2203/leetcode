@@ -6,15 +6,21 @@ func main() {
 	generatePossibleWords("hello")
 }
 
+func ladderLength(beginWord string, endWord string, wordList []string) int {
+
+	//searc endword in wordlist -- if not found return zero
+
+}
+
 func generatePossibleWords(word string) {
 
-	//possibleWords := []string{}
+	possibleWords := []string{}
 
 	for i := 0; i < len(word); i++ {
 		for char := 'a'; char <= 'z'; char++ {
 			newWord := replaceChar(string(word), i, byte(char))
 			if newWord != word {
-
+				possibleWords = append(possibleWords, newWord)
 			}
 
 		}
