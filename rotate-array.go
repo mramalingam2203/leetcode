@@ -8,34 +8,19 @@ func main() {
 
 	array := []int{1, 2, 3, 4, 5, 6, 7}
 
-	reverse(array, 0, len(array)-1)
-	//rotate(array, 1)
+	rotate(array, 1)
 	fmt.Println(array)
 
 }
 
-/*
-
 func rotate(nums []int, k int) {
-
 	n := len(nums)
+	k %= n
 
-	if n < 1 || n > 1e5 || k < 0 || k > 1e5 {
-		return
-	}
-
-	s1 := nums[n-k : n]
-	s2 := nums[:k+1]
-
-	for i := 0; i < len(s2); i++ {
-		s1 = append(s1, s2[i])
-	}
-
-	for i := 0; i < len(nums); i++ {
-		nums[i] = s1[i]
-	}
+	reverse(nums, 0, n-1) // Reverse the whole array
+	reverse(nums, 0, k-1) // Reverse the first part up to k
+	reverse(nums, k, n-1) // Reverse the second part from k to n-1
 }
-*/
 
 func reverse(nums []int, start, end int) {
 
