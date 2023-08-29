@@ -10,6 +10,10 @@ func main() {
 
 func fib(n int) int {
 
+	if n <= 0 || n > 30 {
+		return 0
+	}
+
 	fib_table := make([]int, n+1)
 	fib_table[0] = 0
 	fib_table[1] = 1
