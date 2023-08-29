@@ -5,7 +5,7 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(tribonacci(25))
+	fmt.Println(tribonacci(2))
 }
 
 func tribonacci(n int) int {
