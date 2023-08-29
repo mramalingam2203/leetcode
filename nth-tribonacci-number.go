@@ -19,6 +19,14 @@ func tribonacci(n int) int {
 	trib_table[1] = 1
 	trib_table[2] = 1
 
+	if n == 0 {
+		return 0
+	} else if n == 1 {
+		return 1
+	} else if n == 2 {
+		return 1
+	}
+
 	for i := 3; i <= n; i++ {
 		trib_table[i] = trib_table[i-1] + trib_table[i-2] + trib_table[i-3]
 	}
