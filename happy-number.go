@@ -2,22 +2,31 @@
 
 package main
 
-import "strconv"
+import (
+	"fmt"
+	"math"
+	"strconv"
+)
 
 func main() {
-	isHappy(19)
+	fmt.Println(isHappy(19))
 }
 
 func isHappy(n int) bool {
 
-	for n > 1 {
-		s := strconv.Itoa(n)
+	if n < 1 || n > math.MaxInt32 {
+		return false
+	}
 
+	for n != 1 {
+		s := strconv.Itoa(n)
+		sum := 0
 		for i := 0; i < len(s); i++ {
-			temp, _ := strconv.Atoi(s[i])
-			sum := temp * temp
+			temp, _ := strconv.Atoi(string(s[i]))
+			sum += temp * temp
 		}
 		n = sum
 	}
 
+	return true
 }
