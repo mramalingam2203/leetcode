@@ -2,7 +2,10 @@
 
 package main
 
-import "math"
+import (
+	"fmt"
+	"math"
+)
 
 func convertToTitle(columnNumber int) string {
 
@@ -12,7 +15,7 @@ func convertToTitle(columnNumber int) string {
 	title := ""
 	var reminder int
 	for columnNumber > 0 {
-		reminder = (columnNumber - 1) / 26
+		reminder = (columnNumber - 1) % 26
 		title += string(rune(reminder + 65))
 		columnNumber = (columnNumber - 1) / 26
 	}
@@ -26,5 +29,5 @@ func convertToTitle(columnNumber int) string {
 }
 
 func main() {
-	convertToTitle(28)
+	fmt.Println(convertToTitle(701))
 }
