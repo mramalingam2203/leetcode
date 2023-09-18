@@ -2,17 +2,29 @@
 
 package main
 
-import "strconv"
+import (
+	"fmt"
+	"strconv"
+)
 
 func main() {
+
+	array := []int{5, 10, 1, 5, 2}
+	target := 1
+	sumIndicesWithKSetBits(array, target)
 
 }
 
 func sumIndicesWithKSetBits(nums []int, k int) int {
 
+	for i := 0; i < len(nums); i++ {
+		findSetBits(i, k)
+	}
+
+	return 0
 }
 
-func findSetBits(decimal, k int) bool {
+func findSetBits(decimal int, k int) bool {
 
 	if decimal == 0 {
 		return false
@@ -28,7 +40,10 @@ func findSetBits(decimal, k int) bool {
 		decimal >>= 1
 	}
 
-	return true
+	if countOccurrences(strconv.Itoa(decimal), '1') == k {
+		return true
+	}
+	return false
 }
 
 func countOccurrences(inputString string, targetChar byte) int {
@@ -39,6 +54,6 @@ func countOccurrences(inputString string, targetChar byte) int {
 			count++
 		}
 	}
-
+	fmt.Println(count)
 	return count
 }
