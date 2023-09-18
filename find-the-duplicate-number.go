@@ -27,7 +27,7 @@ func findDuplicate(nums []int) int {
 	targetValue := 2
 	var result int
 	for key, value := range frequency {
-		if value == targetValue {
+		if value >= targetValue {
 			result = key
 		}
 	}
