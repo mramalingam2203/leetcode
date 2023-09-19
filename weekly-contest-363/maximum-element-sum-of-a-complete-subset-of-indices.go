@@ -7,7 +7,21 @@ import "fmt"
 func main() {
 	array := []int{8, 7, 3, 5, 7, 2, 4, 9}
 	//	maximumSum(array)
-	fmt.Println(findSubsets(array))
+	subsets := findSubsets(array)
+	findCompleteSubsets(subsets)
+}
+
+func findCompleteSubsets(array [][]int) {
+
+	for i := 0; i < len(array); i++ {
+		prod := 1
+		for j := 0; j < len(array[i]); j++ {
+			prod *= array[i][j]
+		}
+		if isPerfectSquare(prod) == true {
+			fmt.Println(array[i], prod)
+		}
+	}
 
 }
 
