@@ -5,7 +5,7 @@ package main
 import "fmt"
 
 func main() {
-	array := []int{5, 10, 3, 10, 1, 13, 7, 9, 4}
+	array := []int{8, 7, 3, 5, 7, 2, 4, 9}
 	maximumSum(array)
 	fmt.Println(isPerfectSquare(36))
 
@@ -17,7 +17,9 @@ func maximumSum(nums []int) int64 {
 
 	for i := 0; i < n; i++ {
 		for j := i + 1; j < n; j++ {
-			fmt.Println(isPerfectSquare(nums[i] * nums[j]))
+			if isPerfectSquare(nums[i]*nums[j]) == true {
+				fmt.Println(nums[i], nums[j])
+			}
 		}
 	}
 
