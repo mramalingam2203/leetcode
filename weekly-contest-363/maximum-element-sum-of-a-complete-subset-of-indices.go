@@ -6,8 +6,8 @@ import "fmt"
 
 func main() {
 	array := []int{8, 7, 3, 5, 7, 2, 4, 9}
-	maximumSum(array)
-	fmt.Println(isPerfectSquare(36))
+	//	maximumSum(array)
+	fmt.Println(findSubsets(array))
 
 }
 
@@ -24,6 +24,28 @@ func maximumSum(nums []int) int64 {
 	}
 
 	return 10
+}
+
+func findSubsets(arr []int) [][]int {
+	var result [][]int
+
+	var backtrack func(start int, currentSubset []int)
+	backtrack = func(start int, currentSubset []int) {
+		// Add the current subset to the result
+		temp := make([]int, len(currentSubset))
+		copy(temp, currentSubset)
+		result = append(result, temp)
+
+		// Explore subsets with the remaining elements
+		for i := start; i < len(arr); i++ {
+			currentSubset = append(currentSubset, arr[i])        // Include the current element
+			backtrack(i+1, currentSubset)                        // Recursively find subsets
+			currentSubset = currentSubset[:len(currentSubset)-1] // Exclude the current element
+		}
+	}
+
+	backtrack(0, []int{})
+	return result
 }
 
 func isPerfectSquare(n int) bool {
