@@ -1,14 +1,23 @@
-// https://leetcode.com/problems/remove-invalid-parentheses/
-
 package main
 
-func main() {
+import "fmt"
 
-	removeInvalidParentheses("[3]He[llo]")
+func isValid(s string) bool {
+	count := 0
+	for _, char := range s {
+		if char == '(' {
+			count++
+		} else if char == ')' {
+			count--
+			if count < 0 {
+				return false
+			}
+		}
+	}
+	return count == 0
 }
 
 func removeInvalidParentheses(s string) []string {
-
 	if s == "" {
 		return []string{""}
 	}
@@ -40,26 +49,13 @@ func removeInvalidParentheses(s string) []string {
 				}
 			}
 		}
-
 	}
+
 	return result
 }
 
-func isValid(s string) bool {
-
-	count := 0
-
-	for char := range s {
-
-		if char == '(' {
-			count++
-		} else if char == ')' {
-			count--
-			if count < 0 {
-				return false
-			}
-
-		}
-	}
-	return count == 0
+func main() {
+	inputStr := "()())()"
+	result := removeInvalidParentheses(inputStr)
+	fmt.Println(result) // Output: ["(())()", "()()()"]
 }
