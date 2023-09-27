@@ -5,35 +5,35 @@ package main
 import (
 	"fmt"
 	"strconv"
-	"strings"
 )
-
-func isAdditiveNumber(num string) bool {
-	return false
-}
 
 func main() {
 
-	fmt.Println("12345")
+	fmt.Println(isAdditiveNumber("199100199"))
 
 }
 
-func stringToNumberArray(input string) ([]int, error) {
-	// Split the input string into individual number strings.
-	numberStrings := strings.Fields(input)
+func isAdditiveNumber(num string) bool {
+	// Create a slice to hold the characters.
+	charArray := []rune{}
 
-	// Initialize a slice to hold the parsed integers.
-	numbers := make([]int, len(numberStrings))
-
-	// Parse each number string and store it in the numbers slice.
-	for i, numStr := range numberStrings {
-		num, err := strconv.Atoi(numStr)
-		if err != nil {
-			// Return an error if parsing fails.
-			return nil, err
-		}
-		numbers[i] = num
+	// Iterate over the string and add each character to the slice.
+	for _, char := range num {
+		charArray = append(charArray, char)
 	}
 
-	return numbers, nil
+	numArray := []int{}
+
+	for _, char := range num {
+		number, _ := strconv.Atoi(string(char))
+		numArray = append(numArray, number)
+	}
+
+	for i := 2; i < len(numArray); i++ {
+		if numArray[i] != numArray[i-1]+numArray[i-2] {
+			return false
+		}
+	}
+
+	return true
 }
