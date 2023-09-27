@@ -1,9 +1,13 @@
 // https://leetcode.com/problems/range-sum-query-2d-immutable/
 
 type NumMatrix struct {
+	elements [][]int
 }
 
 func Constructor(matrix [][]int) NumMatrix {
+	return NumArray{
+		elements: nums,
+	}
 
 }
 
