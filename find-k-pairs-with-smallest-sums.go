@@ -2,18 +2,21 @@
 
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+)
 
 func main() {
 
-	arr_1 := []int{1, 2, 3}
-	arr_2 := []int{4, 5, 6}
+	arr_1 := []int{1, 7, 11}
+	arr_2 := []int{2, 4, 6}
 	k := 3
-	kSmallestPairs(arr_1, arr_2, k)
+	fmt.Println(kSmallestPairs(arr_1, arr_2, k))
 
 }
 
-func kSmallestPairs(nums1 []int, nums2 []int, k int) {
+func kSmallestPairs(nums1 []int, nums2 []int, k int) [][]int {
 	result := []int{}
 	for i := 0; i < len(nums1); i++ {
 		for j := 0; j < len(nums2); j++ {
@@ -44,5 +47,22 @@ func kSmallestPairs(nums1 []int, nums2 []int, k int) {
 			}
 		}
 	}
-	fmt.Println(matrix)
+
+	// Define a custom sorting function based on the sum of elements
+	sort.Slice(matrix, func(i, j int) bool {
+		sum1 := sumOfElements(matrix[i])
+		sum2 := sumOfElements(matrix[j])
+		return sum1 < sum2
+	})
+
+	return matrix[0:k]
+}
+
+// Function to calculate the sum of elements in a slice
+func sumOfElements(slice []int) int {
+	sum := 0
+	for _, num := range slice {
+		sum += num
+	}
+	return sum
 }
