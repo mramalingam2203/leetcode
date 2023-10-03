@@ -55,7 +55,29 @@ func kSmallestPairs(nums1 []int, nums2 []int, k int) [][]int {
 		return sum1 < sum2
 	})
 
-	return matrix[0:k]
+	resultSlice := removeLastNRows(matrix, len(matrix)-k)
+	fmt.Println(resultSlice)
+	return resultSlice
+
+}
+
+// Function to remove the last n rows from a 2D slice
+func removeLastNRows(slice [][]int, n int) [][]int {
+	// Calculate the new length of the slice after removal
+	newLength := len(slice) - n
+
+	// Check if the new length is negative or zero
+	if newLength <= 0 {
+		return [][]int{} // Return an empty slice if there are no rows left
+	}
+
+	// Create a new slice to store the result
+	result := make([][]int, newLength)
+
+	// Copy the rows to keep into the result slice
+	copy(result, slice[:newLength])
+
+	return result
 }
 
 // Function to calculate the sum of elements in a slice
