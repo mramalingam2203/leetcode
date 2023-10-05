@@ -4,6 +4,7 @@ package main
 
 import "fmt"
 
+/*
 func fourSumCount(nums1 []int, nums2 []int, nums3 []int, nums4 []int) int {
 
 	min := 0              // Minimum value for each number
@@ -40,6 +41,7 @@ func generateCombinations(min, max, length int, current []int, result *[][]int) 
 		generateCombinations(min, max, length-1, current, result)
 	}
 }
+*/
 
 func main() {
 	nums1 := []int{0}
@@ -48,4 +50,27 @@ func main() {
 	nums4 := []int{0}
 
 	fmt.Println(fourSumCount(nums1, nums2, nums3, nums4))
+}
+
+func fourSumCount(nums1 []int, nums2 []int, nums3 []int, nums4 []int) int {
+	sumsAB := make(map[int]int)
+	count := 0
+
+	// Calculate all possible sums of pairs from nums1 and nums2
+	for _, num1 := range nums1 {
+		for _, num2 := range nums2 {
+			sum := num1 + num2
+			sumsAB[sum]++
+		}
+	}
+
+	// Calculate all possible sums of pairs from nums3 and nums4
+	for _, num3 := range nums3 {
+		for _, num4 := range nums4 {
+			target := -(num3 + num4)
+			count += sumsAB[target]
+		}
+	}
+
+	return count
 }
