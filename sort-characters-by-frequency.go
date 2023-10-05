@@ -14,35 +14,36 @@ func main() {
 
 func frequencySort(s string) string {
 
-	freq := make(map[byte]int)
+	// Step 1: Create a map to count character frequencies
+	charFrequency := make(map[rune]int)
 
+	// Step 2: Populate the frequency map
 	for _, char := range s {
-		freq[byte(char)]++
+		charFrequency[char]++
 	}
 
-	// Create a slice to store key-value pairs
-	var keyValuePairs []struct {
-		Key   byte
-		Value int
+	// Step 3: Create a custom sorting type and function
+	type CharCount struct {
+		Char  rune
+		Count int
 	}
 
-	// Populate the slice with map data
-	for key, value := range freq {
-		keyValuePairs = append(keyValuePairs, struct {
-			Key   byte
-			Value int
-		}{key, value})
+	// Step 4: Sort the characters by frequency
+	charCounts := []CharCount{}
+	for char, count := range charFrequency {
+		charCounts = append(charCounts, CharCount{char, count})
 	}
 
-	// Define a custom sorting function based on values
-	sort.Slice(keyValuePairs, func(i, j int) bool {
-		return keyValuePairs[i].Value > keyValuePairs[j].Value
+	sort.Slice(charCounts, func(i, j int) bool {
+		return charCounts[i].Count > charCounts[j].Count
 	})
 
+	// Step 5: Create a new string by appending characters in sorted order
 	result := ""
-	// Print the sorted key-value pairs
-	for _, kv := range keyValuePairs {
-		result += string(kv.Key)
+	for _, cc := range charCounts {
+		for i := 0; i < cc.Count; i++ {
+			result += string(cc.Char)
+		}
 	}
 
 	return result
