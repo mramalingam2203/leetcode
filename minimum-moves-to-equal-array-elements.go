@@ -2,39 +2,45 @@
 
 package main
 
-import "math"
+import (
+	"fmt"
+	"math"
+)
 
-func main() {}
+func main() {
+	array := []int{1, 1, 1}
+	// fmt.Println(arrayMin(array))
+	fmt.Println(minMoves(array))
+}
 
 func minMoves(nums []int) int {
 
-	minNum = minimum value in the array nums
-    sum = sum of all elements in the array nums
+	minNum := arrayMin(nums)
+	sum := arraySum(nums)
 
-	# Calculate the minimum moves required
-    minMoves = sum - (minNum * length of nums)
+	// Calculate the minimum moves required
+	result := sum - (minNum * len(nums))
+
+	return result
 }
 
-
-func arraySum(arr []int)int{
+func arraySum(arr []int) int {
 
 	sum := 0
 
-	for i := range arr{
+	for i := range arr {
 		sum += arr[i]
 	}
 
 	return sum
 }
 
+func arrayMin(arr []int) int {
 
+	min := math.MaxInt
 
-func arrayMin(arr []int)int{
-
-	min := math.MinInt
-
-	for i := range arr{
-		if arr[i] < min{
+	for i := range arr {
+		if arr[i] < min {
 			min = arr[i]
 		}
 	}
