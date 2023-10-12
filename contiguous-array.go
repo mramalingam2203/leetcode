@@ -5,17 +5,18 @@ package main
 import "fmt"
 
 func main() {
-	array := []int{0, 1, 0}
+	array := []int{0, 1, 0, 1}
 	fmt.Println(findMaxLength(array))
 }
 
 func findMaxLength(nums []int) int {
 	subarrays := generateSubarrays(nums)
+	fmt.Println(subarrays)
 	result := 0
 	var k int
 	for subarray := range subarrays {
 		k = isContiguous((subarrays[subarray]))
-		if k > result {
+		if k > result && k != -1 {
 			result = k
 		}
 	}
@@ -40,19 +41,17 @@ func generateSubarrays(arr []int) [][]int {
 
 func isContiguous(arr []int) int {
 
-	count_0 := 0
-	count_1 := 0
+	valueMap := make(map[int]int)
 
-	for digit := range arr {
-		if digit == 0 {
-			count_0++
-		} else {
-			count_1++
-		}
+	for i := range arr {
+		valueMap[arr[i]]++
 	}
-	if count_0 == count_1 {
+
+	fmt.Println(valueMap)
+
+	if valueMap[0] == valueMap[1] {
 		return len(arr)
 	}
 
-	return -1
+	return 0
 }
